@@ -1,0 +1,53 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.home {
+    padding-top: 4.5rem;
+
+    &__hero {
+        display: flex;
+        padding: 1rem 5rem 3rem 5rem;
+        background-color: colors.$primary-grey;
+    }
+
+    &__hero-left {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        color: colors.$typography-grey;
+        gap: 1rem;
+    }
+    
+    &__logo {
+        max-width: 55%;
+    }
+
+    
+    &__heading {
+        font-weight: 300;
+        padding-right: 1rem;
+    }
+
+    &__hero-right {
+        width: 30vw;
+        height: 32vw; 
+        position: relative;
+        overflow: hidden;
+    }
+   
+    &__triangle {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);        
+    }
+
+    &__background-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 60%;
+    }
+}
