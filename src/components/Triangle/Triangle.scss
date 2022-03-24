@@ -1,0 +1,33 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.triangle {
+    position: relative;
+    box-sizing: border-box;
+    width: 25vw;
+    height: 14.5vw;
+    background-color: transparent;
+    border-top: 2.5vw solid transparent;
+
+    &--last {
+        border-bottom: 2.5vw solid transparent;
+        height: 17vw;
+    }
+
+    &__shape {
+        position: absolute;
+        top: 0;
+        opacity: 0.8;
+
+        &--left {
+            left: 0;
+            border-left: 20vw solid colors.$primary-white;
+            border-bottom: 12vw solid transparent;
+        }
+        &--right {
+            right: 0;
+            border-right: 20vw solid colors.$primary-white;
+            border-top: 12vw solid transparent;
+        }
+    }
+}
