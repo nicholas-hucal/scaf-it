@@ -1,0 +1,50 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.nav { 
+    background-color: colors.$primary-grey;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+
+    &__container {
+        padding: 1rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    &__list {
+        display: flex;
+        gap: 0 1rem;
+    }
+
+    &__list-item {
+        padding: 0.5rem 1.5rem;
+        text-decoration: none;
+        font-size: 1rem;
+        color: colors.$primary-blue;
+        text-transform: lowercase;
+
+        &--active {
+            background-color: colors.$primary-blue!important;
+            color: colors.$primary-white;
+        }
+
+        &:hover {
+            background-color: colors.$secondary-grey;
+            color: colors.$primary-white;
+        }
+    }
+
+    &__logo-link {
+        width: 12rem;
+        display: block;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    &__logo {
+        width: 100%;
+    }
+}
