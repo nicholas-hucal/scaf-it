@@ -1,0 +1,94 @@
+@use "mixins";
+@use "colors";
+
+@font-face {
+    font-family: 'Chivo';
+    src: 
+        url('../../assets/fonts/Chivo/Chivo-Regular.ttf');
+    font-weight: 500;
+    font-style: bolder;
+}
+
+@font-face {
+    font-family: 'Chivo';
+    src: 
+        url('../../assets/fonts/Chivo/Chivo-Black.ttf');
+    font-weight: 900;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: 
+        url('../../assets/fonts/Montserrat/Montserrat-ExtraLight.ttf');
+    font-weight: 200;
+    font-style: lighter;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: 
+        url('../../assets/fonts/Montserrat/Montserrat-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: 
+        url('../../assets/fonts/Montserrat/Montserrat-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    @include mixins.tablet {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+}
+
+h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    @include mixins.tablet {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+}
+
+h3, a, button, label {
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-family: 'Montserrat', sans-serif;
+    @include mixins.tablet {
+        font-size: 0.875rem;
+        line-height: 1.375rem;
+    }
+}
+
+p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.9375rem;
+    line-height: 1.625rem;
+    @include mixins.tablet {
+        font-size: 1rem;
+        line-height: 1.75rem;
+    }
+}
