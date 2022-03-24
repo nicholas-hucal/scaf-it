@@ -11,9 +11,9 @@ const Nav = () => {
                 </Link>
                 <nav className='nav__list'>
                     <NavLink className='nav__list-item' activeClassName='nav__list-item--active' exact to='/'>Home</NavLink>
-                    <Link className='nav__list-item' to='/'>Features</Link>
+                    <Link className='nav__list-item' to='#features'>Features</Link>
+                    <Link className='nav__list-item' to='#contact'>Contact</Link>
                     <NavLink className='nav__list-item' activeClassName='nav__list-item--active' to='/editor'>Editor</NavLink>
-                    <Link className='nav__list-item' to='/'>Contact</Link>
                 </nav>
             </section>
         </header>

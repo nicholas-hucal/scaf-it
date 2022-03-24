@@ -8,7 +8,7 @@ import Triangle from '../../components/Triangle/Triangle';
 class Home extends Component {
     render() {
         return (
-            <main className='home'>
+            <div className='home'>
                 <section className='home__hero'>
                     <div className='home__hero-left'>
                         <img className='home__logo' src={logo} alt="scafit logo" />
@@ -23,7 +23,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </section>
-            </main>
+            </div>
         );
     }
 }

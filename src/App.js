@@ -10,8 +10,10 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Switch>
-          <Route to="/" component={Home} />
-          <Route to="/editor" component={Editor} />
+          <main className='app__main'>
+            <Route path="/" exact component={Home} />
+            <Route path="/editor" component={Editor} />
+          </main>
         </Switch>
       </BrowserRouter>
     </div>

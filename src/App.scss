@@ -2,5 +2,7 @@
 @use "./styles/partials/mixins";
 
 .app {
-  
+    &__main {
+        padding-top: 4.5rem;
+    }
 }
