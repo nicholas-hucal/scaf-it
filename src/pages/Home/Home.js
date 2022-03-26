@@ -22,8 +22,20 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className='home__features'>
+            <section id='features' className='home__features'>
                 {homepage.cards.map(card => <Card key={uuidv4()} card={card} />)}
+            </section>
+            <section className='home__mailing-list'>
+                <h2 className='home__sub-heading'>subscribe to our mailing list for updates</h2>
+                <input className='home__list-input' type='text' placeholder='subscribe with email' />
+            </section>
+            <section id='contact' className='home__contact'>
+                <div className='home__contact-column'>
+                    <h3>SCAFit</h3>
+                </div>
+                <div className='home__contact-column'>
+                    <h3>Tech Stack</h3>
+                </div>
             </section>
         </div>
     );

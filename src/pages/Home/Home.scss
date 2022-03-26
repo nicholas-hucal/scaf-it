@@ -53,4 +53,23 @@
     &__features {
         padding: 2rem;
     }
+
+    &__mailing-list {
+        background-color: colors.$primary-blue;
+        color: colors.$primary-white;
+        padding: 3rem 0;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    &__contact {
+        padding: 2rem;
+        display: flex;
+
+    }
+
+    &__contact-column {
+        flex: 1
+    }
 }
