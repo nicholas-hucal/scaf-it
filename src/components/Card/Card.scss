@@ -1,0 +1,19 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.card {
+    display: flex;
+    margin-bottom: 2rem;
+
+    &__details {
+        flex: 1;
+    }
+
+    &__image {
+        flex: 1;
+    }
+
+    &__heading {
+        color: colors.$primary-blue;
+    }
+}
