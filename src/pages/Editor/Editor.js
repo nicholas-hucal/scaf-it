@@ -1,34 +1,52 @@
 import './Editor.scss';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../utils/api';
 import LoginButton from '../../components/LoginButton/LoginButton';
 import SiteLink from '../../components/SiteLink/SiteLink';
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const Editor = ({ isLoggedIn }) => {
-
+const Editor = () => {
+    const [authStatus, setAuthStatus] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [profileData, setProfileData] = useState(null);
+  
     useEffect(() => {
-        console.log('useEffect')
-        // axios
-        //     .get(`${SERVER_URL}`)
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
+      api
+        .authorization()
+        .then(res => {
+          setAuthStatus(false)
+          setIsLoggedIn(true)
+          setProfileData(res.data)
+        })
+        .catch((err) => {
+          if (err.response.status === 401) {
+            setAuthStatus(false);
+            setIsLoggedIn(false);
+          } else {
+            console.log('Error authenticating', err);
+          }
+        });
     }, []);
 
+    const createZip = () => {
+        api
+            .createZip()
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
     if (!isLoggedIn) {
         return <LoginButton title='Please Login' />
     }
 
     return (
-        <div className='editor'>
+        <section className='editor'>
             <h1 className='editor__heading'>Editor Page</h1>
-            <SiteLink text="logout" type="anchor" to={`${SERVER_URL}/auth/logout`} />
-        </div>
+            <SiteLink text="logout" type="anchor" to={api.logOut} />
+        </section>
     );
 }
 
