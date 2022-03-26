@@ -1,0 +1,24 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.site-link {
+    background-color: colors.$primary-blue;
+    border: 1px solid colors.$primary-blue;
+    color: colors.$primary-white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0.5rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+    text-decoration: none;
+
+    &--active {
+        background-color: colors.$primary-blue!important;
+        color: colors.$primary-white;
+    }
+
+    &:hover {
+        background-color: colors.$secondary-grey;
+        border: 1px solid colors.$secondary-grey;
+        color: colors.$primary-white;
+    }
+}

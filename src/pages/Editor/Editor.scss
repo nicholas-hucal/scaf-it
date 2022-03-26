@@ -1,6 +1,6 @@
-@use "./styles/partials/colors";
-@use "./styles/partials/mixins";
+@use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
 
 .editor {
-
+    padding: 2rem;
 }

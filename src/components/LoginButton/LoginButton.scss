@@ -1,0 +1,25 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.login-button {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    text-align: center;
+    max-width: 30rem;
+    margin: 0 auto;
+
+    &__link {
+        background-color: colors.$primary-blue;
+        border: 1px solid colors.$primary-blue;
+        color: colors.$primary-white;
+        font-family: 'Montserrat', sans-serif;
+        padding: 0.5rem 2rem;
+        font-size: 1.25rem;
+        font-weight: 300;
+        text-decoration: none;
+    }
+}

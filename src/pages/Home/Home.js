@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import './Home.scss';
 import background from '../../assets/images/scaffold-bg.jpg';
 import logo from '../../assets/logos/logo@2x.png';
-import Button from '../../components/Button/Button';
+import SiteLink from '../../components/SiteLink/SiteLink';
 import Triangle from '../../components/Triangle/Triangle';
 
 class Home extends Component {
+
+    goToEditor
+
     render() {
         return (
             <div className='home'>
@@ -13,7 +16,7 @@ class Home extends Component {
                     <div className='home__hero-left'>
                         <img className='home__logo' src={logo} alt="scafit logo" />
                         <h1 className='home__heading'>Easy component scaffolding for efficient React development</h1>
-                        <Button text="explore more"/>
+                        <SiteLink to='/editor' text='to the editor'/>
                     </div>
                     <div className='home__hero-right'>
                         <img className='home__background-image' src={background} alt="scaffolding background" />

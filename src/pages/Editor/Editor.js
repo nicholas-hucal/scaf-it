@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import LoginButton from '../../components/LoginButton/LoginButton';
+import './Editor.scss';
 
-class Editor extends Component {
-    render() {
-        return (
-            <div className='editor'>
-                <h1>Editor Page</h1>
-            </div>
-        );
+const Editor = ({isLoggedIn}) => {
+    if(!isLoggedIn) {
+        return <LoginButton />
     }
+
+    return (
+        <div className='editor'>
+            <h1>Editor Page</h1>
+        </div>
+    );
 }
 
 export default Editor;
