@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Editor from './pages/Editor/Editor';
+import Error from './pages/Error/Error'
 import Nav from './components/Nav/Nav';
 import axios from 'axios';
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/editor">
               <Editor isLoggedIn={isLoggedIn} />
             </Route>
+            <Route path="/error" component={Error}/>
           </Switch>
         </main>
       </BrowserRouter>

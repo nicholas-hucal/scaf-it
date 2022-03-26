@@ -5,7 +5,7 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Editor = ({isLoggedIn}) => {
     if(!isLoggedIn) {
-        return <LoginButton />
+        return <LoginButton title='Please Login' />
     }
 
     return (
