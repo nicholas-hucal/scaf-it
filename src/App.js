@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div className='app'>
       <BrowserRouter>
-        <Nav isLoggedIn={isLoggedIn}/>
+        <Nav/>
         <main className='app__main'>
           <Switch>
             <Route path="/" exact component={Home} />

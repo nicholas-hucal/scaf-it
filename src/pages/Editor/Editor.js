@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import LoginButton from '../../components/LoginButton/LoginButton';
 import './Editor.scss';
+import LoginButton from '../../components/LoginButton/LoginButton';
+import SiteLink from '../../components/SiteLink/SiteLink';
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Editor = ({isLoggedIn}) => {
     if(!isLoggedIn) {
@@ -9,7 +10,8 @@ const Editor = ({isLoggedIn}) => {
 
     return (
         <div className='editor'>
-            <h1>Editor Page</h1>
+            <h1 className='editor__heading'>Editor Page</h1>
+            <SiteLink text="logout" type="anchor" to={`${SERVER_URL}/auth/logout`} />
         </div>
     );
 }
