@@ -4,13 +4,17 @@
 .card {
     display: flex;
     margin-bottom: 2rem;
+    gap: 3rem;
 
     &__details {
         flex: 1;
+        &--reversed {
+            order: 2;
+        }
     }
 
     &__image {
-        flex: 1;
+        width: 33%;
     }
 
     &__heading {

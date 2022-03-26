@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginButton.scss';
-import github from '../../assets/logos/github-mark-dark.svg';
+import github from '../../assets/brands/brand_github.svg';
 import SiteLink from '../SiteLink/SiteLink';
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 

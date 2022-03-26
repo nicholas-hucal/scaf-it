@@ -51,12 +51,11 @@
     }
 
     &__features {
-        padding: 2rem;
+        padding: 2rem 5rem;
     }
 
     &__mailing-list {
-        background-color: colors.$primary-blue;
-        color: colors.$primary-white;
+        background-color: colors.$primary-grey;
         padding: 3rem 0;
         display: flex;
         gap: 1rem;
@@ -66,7 +65,8 @@
     &__contact {
         padding: 2rem;
         display: flex;
-
+        background-color: colors.$primary-blue;
+        color: colors.$primary-white;
     }
 
     &__contact-column {
