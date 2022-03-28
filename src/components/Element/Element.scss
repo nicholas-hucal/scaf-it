@@ -1,0 +1,34 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.element {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+
+    &__bem {
+        display: flex;
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 0.25rem;
+    }
+
+    &__name {
+        border: none;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    &__modifier {
+        border: none;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    &__select {
+        margin-right: 0.5rem;
+    }
+}

@@ -7,4 +7,23 @@
     &__heading {
         margin-bottom: 3rem;
     }
+
+    &__block-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.25rem;
+    }
+
+    &__block {
+        flex: 1;   
+    }
+
+    &__modifier {
+        flex: 1;   
+    }
+
+    &__submit {
+        width: 100%;
+        margin-top: 2rem;
+    }
 }
