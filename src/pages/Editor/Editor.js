@@ -5,14 +5,15 @@ import LoginButton from '../../components/LoginButton/LoginButton';
 import SiteLink from '../../components/SiteLink/SiteLink';
 import Element from '../../components/Element/Element';
 import Modal from '../../components/Modal/Modal';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const Editor = () => {
   const [authStatus, setAuthStatus] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
-  const [block, setBlock] = useState('');
+  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: [] });
+  const [element, setElement] = useState({ name: '', type: '', modifiers: [] });
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -48,12 +49,22 @@ const Editor = () => {
     }
   }
 
-  const changeBlock = (e) => {
-    setBlock(e.target.value)
-    setRows([...rows].map(row => {
-      row.block = e.target.value;
-      return row;
-    }))
+  const changeBlockName = (e) => {
+    const value = e.target.value.replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
+    let newBlock = {...block};
+    newBlock.name = value;
+    setBlock(newBlock)
+    // setRows([...rows].map(row => {
+    //   row.block = e.target.value;
+    //   return row;
+    // }))
+  }
+
+  const changeBlockType = (value) => {
+    value = value.replace(/[^A-Z0-9]+/ig, "").toLowerCase();
+    let newBlock = {...block};
+    newBlock.type = value;
+    setBlock(newBlock)
   }
 
   const changeType = (e, id) => {
@@ -113,9 +124,9 @@ const Editor = () => {
       <h1 className='editor__heading'>Editor Page</h1>
       <div className='editor__area'>
         <div className='editor__block-row'>
-          <input className='editor__block' placeholder='block' onChange={changeBlock}/>
+          <input className='editor__block' placeholder='block' onChange={changeBlockName} />
           <p>--</p>
-          <input className='editor__modifier' placeholder='modifiers'/>
+          <input className='editor__modifier' placeholder='modifiers' />
           <button className='editor__add' onClick={modalToggle}>+</button>
         </div>
         {rows.map(row => {
@@ -138,7 +149,7 @@ const Editor = () => {
 
       </div>
       {/* <SiteLink text="logout" type="anchor" to={api.logOut} /> */}
-      {modal && <Modal modalToggle={modalToggle} />}
+      {modal && <Modal modalToggle={modalToggle} block={block} changeBlockName={changeBlockName} changeBlockType={changeBlockType}/>}
     </section>
   );
 }

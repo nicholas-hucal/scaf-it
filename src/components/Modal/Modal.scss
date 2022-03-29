@@ -12,10 +12,20 @@
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.6);
 
+    &__code {
+        background-color: colors.$primary-blue;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        color: colors.$primary-white;
+        overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+    }
+
     &__content {
         background-color: #fefefe;
         margin: 15vh auto;
-        width: 75vw;
+        width: 50vw;
         position: relative;
         padding: 2rem;
     }
@@ -24,5 +34,6 @@
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
+        cursor: pointer;
     }
 }

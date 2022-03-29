@@ -1,0 +1,14 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.input {
+    &__field {
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid colors.$secondary-grey;
+        padding: 0.5rem 0;
+        outline: none;
+        margin-bottom: 1.5rem;
+    }
+}

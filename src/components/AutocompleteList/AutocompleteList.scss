@@ -1,0 +1,20 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.autocomplete-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+   
+    &__list-item {
+        padding: 0.5rem;
+        border-bottom: 1px solid colors.$secondary-grey;
+        
+        &--active,
+        &:hover {
+            background-color: colors.$primary-green;
+            color: colors.$primary-white;
+            cursor: pointer;
+        }
+    }
+}
