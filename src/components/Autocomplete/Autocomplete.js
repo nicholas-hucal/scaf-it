@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Autocomplete.scss';
 import AutocompleteList from '../AutocompleteList/AutocompleteList';
 
-const Autocomplete = ({ suggestions, changeBlockType }) => {
+const Autocomplete = ({ suggestions, changeBlockType, value }) => {
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const [input, setInput] = useState("");
+    const [input, setInput] = useState(value);
 
     const formatText = (value) => {
         return value.replace(/[^A-Z0-9]+/ig, "").toLowerCase();
@@ -66,6 +66,7 @@ const Autocomplete = ({ suggestions, changeBlockType }) => {
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={input}
+                    placeholder='div'
                 />
             </label>
             {showSuggestions && input &&

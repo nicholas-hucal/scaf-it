@@ -12,7 +12,7 @@ const Editor = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
-  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: [] });
+  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: ['hello', 'here-we-are'] });
   const [element, setElement] = useState({ name: '', type: '', modifiers: [] });
   const [modal, setModal] = useState(false);
 
@@ -51,19 +51,29 @@ const Editor = () => {
 
   const changeBlockName = (e) => {
     const value = e.target.value.replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
-    let newBlock = {...block};
+    let newBlock = { ...block };
     newBlock.name = value;
     setBlock(newBlock)
-    // setRows([...rows].map(row => {
-    //   row.block = e.target.value;
-    //   return row;
-    // }))
   }
 
   const changeBlockType = (value) => {
     value = value.replace(/[^A-Z0-9]+/ig, "").toLowerCase();
-    let newBlock = {...block};
+    let newBlock = { ...block };
     newBlock.type = value;
+    setBlock(newBlock)
+  }
+
+  const changeBlockMods = (e) => {
+    const mods = e.target.value.split(',');
+    console.log(mods)
+    const formatted = mods.map(mod => {
+      mod.replace(",", ",");
+      return mod.replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
+    });
+    console.log(formatted)
+
+    let newBlock = { ...block };
+    newBlock.modifiers = formatted;
     setBlock(newBlock)
   }
 
@@ -149,7 +159,7 @@ const Editor = () => {
 
       </div>
       {/* <SiteLink text="logout" type="anchor" to={api.logOut} /> */}
-      {modal && <Modal modalToggle={modalToggle} block={block} changeBlockName={changeBlockName} changeBlockType={changeBlockType}/>}
+      {modal && <Modal modalToggle={modalToggle} block={block} changeBlockName={changeBlockName} changeBlockType={changeBlockType} changeBlockMods={changeBlockMods} />}
     </section>
   );
 }
