@@ -16,6 +16,7 @@
         background-color: colors.$primary-blue;
         border-radius: 0.25rem;
         padding: 1rem;
+        margin: 0;
         color: colors.$primary-white;
         overflow-x: auto;
             white-space: pre-wrap;
@@ -27,7 +28,13 @@
         margin: 15vh auto;
         width: 50vw;
         position: relative;
-        padding: 2rem;
+        padding: 3rem 2rem;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
     &__close {

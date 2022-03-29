@@ -2,11 +2,12 @@
 @use '../../styles/partials/typography';
 
 .button {
-    background-color: colors.$primary-blue;
-    border: 1px solid colors.$primary-blue;
+    background-color: colors.$primary-green;
+    border: 1px solid colors.$primary-green;
     color: colors.$primary-white;
     font-family: 'Montserrat', sans-serif;
     padding: 0.5rem 2rem;
     font-size: 1.25rem;
     font-weight: 300;
+    border-radius: 0.25rem;
 }

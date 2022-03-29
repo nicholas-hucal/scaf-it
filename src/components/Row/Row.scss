@@ -1,0 +1,20 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.row {
+    &__code {
+        background-color: colors.$primary-blue;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin: 1rem 0;
+        color: colors.$primary-white;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+
+        &--element {
+            margin-left: 3rem;
+            background-color: colors.$primary-green;
+        }
+    }
+}

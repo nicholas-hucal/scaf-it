@@ -2,7 +2,6 @@
 @use '../../styles/partials/typography';
 
 .input {
-    padding-top: 1.5rem;
     display: inline-block;
     width: 100%;
    
@@ -11,7 +10,8 @@
         box-sizing: border-box;
         border: none;
         border-bottom: 1px solid colors.$secondary-grey;
-        padding: 0.5rem 0;
+        background-color: colors.$primary-grey;
+        padding: 0.5rem 0.5rem;
         outline: none;
     }
 }

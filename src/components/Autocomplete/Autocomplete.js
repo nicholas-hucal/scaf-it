@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Autocomplete.scss';
 import AutocompleteList from '../AutocompleteList/AutocompleteList';
 
-const Autocomplete = ({ suggestions, changeBlockType, value }) => {
+const Autocomplete = ({ suggestions, changeType, value }) => {
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -22,7 +22,7 @@ const Autocomplete = ({ suggestions, changeBlockType, value }) => {
         );
 
         setInput(formatText(e.target.value));
-        changeBlockType(formatText(e.target.value));
+        changeType(formatText(e.target.value));
         setFilteredSuggestions(unLinked);
         setActiveSuggestionIndex(0);
         setShowSuggestions(true);
@@ -31,7 +31,7 @@ const Autocomplete = ({ suggestions, changeBlockType, value }) => {
     const onClick = (e) => {
         setFilteredSuggestions([]);
         setInput(formatText(e.target.innerText));
-        changeBlockType(formatText(e.target.innerText));
+        changeType(formatText(e.target.innerText));
         setActiveSuggestionIndex(0);
         setShowSuggestions(false);
     };
@@ -39,7 +39,7 @@ const Autocomplete = ({ suggestions, changeBlockType, value }) => {
     const onKeyDown = (e) => {
         if (e.keyCode === 13) {
             setInput(filteredSuggestions[activeSuggestionIndex]);
-            changeBlockType(filteredSuggestions[activeSuggestionIndex]);
+            changeType(filteredSuggestions[activeSuggestionIndex]);
             setActiveSuggestionIndex(0);
             setShowSuggestions(false);
         } else if (e.keyCode === 38) {
