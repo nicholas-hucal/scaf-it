@@ -66,7 +66,6 @@ const Autocomplete = ({ suggestions, changeBlockType, value }) => {
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={input}
-                    placeholder='div'
                 />
             </label>
             {showSuggestions && input &&

@@ -1,4 +1,5 @@
 import './Home.scss';
+import React, {useEffect} from 'react';
 import SiteLink from '../../components/SiteLink/SiteLink';
 import Triangle from '../../components/Triangle/Triangle';
 import Card from '../../components/Card/Card';
@@ -6,6 +7,11 @@ import homepage from '../../data/homepage';
 import { v4 as uuidv4 } from 'uuid';
 
 const Home = () => {
+
+    useEffect(() => {
+        document.title = "SCAFit | Home";  
+    }, []);
+
     return (
         <div className='home'>
             <section className='home__hero'>

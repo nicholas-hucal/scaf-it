@@ -12,11 +12,12 @@ const Editor = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
-  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: ['hello', 'here-we-are'] });
+  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: [] });
   const [element, setElement] = useState({ name: '', type: '', modifiers: [] });
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
+    document.title = "SCAFit | Editor";  
     api
       .authorization()
       .then(res => {
@@ -64,17 +65,25 @@ const Editor = () => {
   }
 
   const changeBlockMods = (e) => {
-    const mods = e.target.value.split(',');
-    console.log(mods)
+    let mods = e.target.value
+    mods = mods.split(', ');
     const formatted = mods.map(mod => {
-      mod.replace(",", ",");
-      return mod.replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
+      return mod.replace(/[^,A-Z0-9]+/ig, "-").toLowerCase();
     });
-    console.log(formatted)
-
     let newBlock = { ...block };
     newBlock.modifiers = formatted;
     setBlock(newBlock)
+  }
+
+  const clickBlockMods = (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      let mods = e.target.value + ', ';
+      let splitMods = mods.split(', ');
+      let newBlock = { ...block };
+      newBlock.modifiers = splitMods;
+      setBlock(newBlock)
+    }
   }
 
   const changeType = (e, id) => {
@@ -159,7 +168,7 @@ const Editor = () => {
 
       </div>
       {/* <SiteLink text="logout" type="anchor" to={api.logOut} /> */}
-      {modal && <Modal modalToggle={modalToggle} block={block} changeBlockName={changeBlockName} changeBlockType={changeBlockType} changeBlockMods={changeBlockMods} />}
+      {modal && <Modal modalToggle={modalToggle} block={block} clickBlockMods={clickBlockMods} changeBlockName={changeBlockName} changeBlockType={changeBlockType} changeBlockMods={changeBlockMods} />}
     </section>
   );
 }

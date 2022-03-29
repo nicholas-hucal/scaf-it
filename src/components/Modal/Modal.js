@@ -5,7 +5,7 @@ import Input from '../Input/Input';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
 
-const Modal = ({ modalToggle, block, changeBlockName, changeBlockType, changeBlockMods }) => {
+const Modal = ({ modalToggle, block, changeBlockName, changeBlockType, changeBlockMods, clickBlockMods }) => {
 
     const formatMods = (mods) => {
         return mods.map(mod => {
@@ -29,9 +29,9 @@ const Modal = ({ modalToggle, block, changeBlockName, changeBlockType, changeBlo
                             }
                         </code>
                     </pre>
-                    <Input label='element name' placeholder='element name' value={block.name} onChange={changeBlockName} />
-                    <Input label='modifiers' placeholder='modifiers' value={block.modifiers.join(',')} onChange={changeBlockMods} />
                     <Autocomplete suggestions={suggestions} value={block.type} changeBlockType={changeBlockType} />
+                    <Input label='element name' value={block.name} onChange={changeBlockName} />
+                    <Input label='modifiers' value={block.modifiers.join(', ')} onKeyDown={clickBlockMods} onChange={changeBlockMods} />
                 </div>
             </div>
         </div>

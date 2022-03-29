@@ -2,6 +2,10 @@
 @use '../../styles/partials/typography';
 
 .input {
+    padding-top: 1.5rem;
+    display: inline-block;
+    width: 100%;
+   
     &__field {
         width: 100%;
         box-sizing: border-box;
@@ -9,6 +13,5 @@
         border-bottom: 1px solid colors.$secondary-grey;
         padding: 0.5rem 0;
         outline: none;
-        margin-bottom: 1.5rem;
     }
 }
