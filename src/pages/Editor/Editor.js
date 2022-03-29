@@ -2,17 +2,18 @@ import './Editor.scss';
 import React, { useState, useEffect } from 'react';
 import api from '../../utils/api';
 import LoginButton from '../../components/LoginButton/LoginButton';
-import Element from '../../components/Element/Element';
 import Modal from '../../components/Modal/Modal';
-import Row from '../../components/Row/Row';
+import EditorBlock from '../../components/EditorBlock/EditorBlock';
 import SiteLink from '../../components/SiteLink/SiteLink';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../../components/Button/Button';
 
 const Editor = () => {
   const [authStatus, setAuthStatus] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
+  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: [] });
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -35,8 +36,13 @@ const Editor = () => {
   }, []);
 
   const addRow = (row) => {
-    rows.length === 0 ? row.kind = 'block' : row.kind = 'element';
-    setRows(rows => [...rows, row])
+    if (block.name === '') {
+      row.kind = 'block';
+      setBlock(row)
+    } else {
+      row.kind = 'element';
+      setRows(rows => [...rows, row])
+    }
   }
 
   const modalToggle = (e) => {
@@ -52,14 +58,11 @@ const Editor = () => {
     <section className='editor'>
       <h1 className='editor__heading'>Editor Page</h1>
       <div className='editor__area'>
-        <button className='editor__add' onClick={modalToggle}>+</button>
-        {rows.map(row => {
-          return <Row key={`row-${row.id}`} block={rows[0] ? rows[0] : null} row={row} />
-        })}
+        <Button text='add content +' onClick={modalToggle} mod='hollow'/>
+        <EditorBlock key={`block-${block.id}`} block={block} rows={rows} />
       </div>
-      <div className='editor__sidebar'></div>
       {/* <SiteLink text="logout" type="anchor" to={api.logOut} /> */}
-      {modal && <Modal modalToggle={modalToggle} addRow={addRow} />}
+      {modal && <Modal modalToggle={modalToggle} addRow={addRow} block={block}/>}
     </section>
   );
 }

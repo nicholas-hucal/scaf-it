@@ -1,0 +1,16 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.editor-row {
+    &__code {
+        background-color: colors.$primary-green;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin: 1rem 0;
+        color: colors.$primary-white;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin-left: 3rem;
+    }
+}

@@ -7,12 +7,12 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
 import { v4 as uuidv4 } from 'uuid';
 
-const Modal = ({ modalToggle, addRow }) => {
-    const [row, setRow] = useState({ name: '', type: 'div', modifiers: [] });
+const Modal = ({ modalToggle, addRow, block }) => {
+    const [row, setRow] = useState({ name: '', type: '', modifiers: [] });
     
     const formatMods = (mods) => {
         return mods.map(mod => {
-            return mod !== '' ? ` ${row.name}--${mod}` : ''
+            return mod !== '' ? ` ${block.name !== '' ? `${block.name}__` : ''}${row.name}--${mod}` : ''
         }).join('')
     }
     
@@ -69,9 +69,9 @@ const Modal = ({ modalToggle, addRow }) => {
                     <pre className='modal__code'>
                         <code>
                             {row.type === 'input' || row.type === 'img' ?
-                                `<${row.type} className="${row.name}${formatMods(row.modifiers)}"/>`
+                                `<${row.type} className="${block.name !== '' ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"/>`
                                 :
-                                `<${row.type} className="${row.name}${formatMods(row.modifiers)}"></${row.type}>`
+                                `<${row.type} className="${block.name !== '' ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"></${row.type}>`
                             }
                         </code>
                     </pre>

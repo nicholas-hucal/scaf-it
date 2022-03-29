@@ -10,4 +10,10 @@
     font-size: 1.25rem;
     font-weight: 300;
     border-radius: 0.25rem;
+    cursor: pointer;
+
+    &--hollow {
+        background-color: colors.$primary-white;
+        color: colors.$primary-green;
+    }
 }

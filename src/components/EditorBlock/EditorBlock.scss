@@ -1,7 +1,7 @@
 @use '../../styles/partials/colors';
 @use '../../styles/partials/typography';
 
-.row {
+.editor-block {
     &__code {
         background-color: colors.$primary-blue;
         border-radius: 0.25rem;
@@ -11,10 +11,5 @@
         overflow-x: auto;
         white-space: pre-wrap;
         word-wrap: break-word;
-
-        &--element {
-            margin-left: 3rem;
-            background-color: colors.$primary-green;
-        }
     }
 }
