@@ -4,6 +4,7 @@ import api from '../../utils/api';
 import LoginButton from '../../components/LoginButton/LoginButton';
 import SiteLink from '../../components/SiteLink/SiteLink';
 import Element from '../../components/Element/Element';
+import Modal from '../../components/Modal/Modal';
 import {v4 as uuidv4} from 'uuid';
 
 const Editor = () => {
@@ -12,6 +13,7 @@ const Editor = () => {
   const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
   const [block, setBlock] = useState('');
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     api
@@ -97,6 +99,11 @@ const Editor = () => {
       })
   }
 
+  const modalToggle = (e) => {
+    e.preventDefault();
+    setModal(!modal)
+  }
+
   if (!isLoggedIn) {
     return <LoginButton title='Please Login' />
   }
@@ -109,7 +116,7 @@ const Editor = () => {
           <input className='editor__block' placeholder='block' onChange={changeBlock}/>
           <p>--</p>
           <input className='editor__modifier' placeholder='modifiers'/>
-          <button className='editor__add' onClick={addElement}>+</button>
+          <button className='editor__add' onClick={modalToggle}>+</button>
         </div>
         {rows.map(row => {
           return <Element
@@ -131,6 +138,7 @@ const Editor = () => {
 
       </div>
       {/* <SiteLink text="logout" type="anchor" to={api.logOut} /> */}
+      {modal && <Modal modalToggle={modalToggle} />}
     </section>
   );
 }
