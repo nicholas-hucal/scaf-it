@@ -24,7 +24,6 @@ const EditorBlock = ({ block, rows, actions }) => {
                 </div>
                 <code>
                     {`<${block.type} className="${block.kind === 'element' ? `${block.name}__${block.name}` : block.name}${formatMods(block.modifiers)}">`}
-
                         {rows.map(row => {
                             return <EditorRow key={`row-${row.id}`} block={block} row={row} actions={actions} />
                         })}

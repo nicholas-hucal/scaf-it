@@ -9,7 +9,7 @@
         top: 0.25rem;
         right: 0.25rem;
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
     }
 
     &__action {
@@ -27,14 +27,20 @@
     }
 
     &__code {
-        background-color: colors.$primary-green;
+        background-color: colors.$primary-grey;
+        color: colors.$primary-black;
         border-radius: 0.25rem;
         padding: 1rem;
         margin: 1rem 0;
-        color: colors.$primary-white;
+        // color: colors.$primary-white;
         overflow-x: auto;
         white-space: pre-wrap;
         word-wrap: break-word;
-        margin-left: 3rem;
+        margin-left: 2rem;
+
+        &--child {
+            background-color: colors.$primary-blue;
+            color: colors.$primary-white;
+        }
     }
 }

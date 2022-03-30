@@ -7,7 +7,7 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
 import { v4 as uuidv4 } from 'uuid';
 
-const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit }) => {
+const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
     const [row, setRow] = useState(rowToEdit ? rowToEdit : { name: '', type: '', modifiers: [] });
 
     const formatMods = (mods) => {
@@ -45,7 +45,11 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit }) => {
         e.preventDefault();
         if (rowToEdit.name) {
             editRow(row, row.parent);
-        } else {
+        } else if (parent.name) {
+            row.id = uuidv4();
+            parent.elements.push(row);
+            editRow(parent);
+        }else {
             row.id = uuidv4();
             addRow(row);
         }
