@@ -6,10 +6,13 @@
 
     &__buttons {
         position: absolute;
-        top: 0.25rem;
-        right: 0.25rem;
+        top: 0;
+        right: 0;
         display: flex;
-        // flex-direction: column;
+        align-items: center;
+        background-color: colors.$primary-green;
+        border-top-right-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
     }
 
     &__action {
@@ -30,7 +33,7 @@
         background-color: colors.$primary-grey;
         color: colors.$primary-black;
         border-radius: 0.25rem;
-        padding: 1rem;
+        padding: 1.5rem 1rem 1.5rem 1rem;
         margin: 1rem 0;
         // color: colors.$primary-white;
         overflow-x: auto;

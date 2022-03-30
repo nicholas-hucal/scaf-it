@@ -7,7 +7,6 @@ import addIcon from '../../assets/icons/add.svg';
 const EditorRow = ({ row, block, actions, child }) => {
     const formatMods = (mods) => {
         return mods.map(mod => {
-            console.log(block);
             return mod !== '' ? ` ${block.name}__${row.name}--${mod}` : ''
         }).join('')
     }

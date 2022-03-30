@@ -24,10 +24,12 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
     }
     
     const changeType = (value) => {
-        value = value.replace(/[^A-Z0-9]+/ig, "").toLowerCase();
-        let newRow = { ...row };
-        newRow.type = value;
-        setRow(newRow)
+        if (typeof value !== 'undefined') {
+            value = value.replace(/[^A-Z0-9]+/ig, "").toLowerCase();
+            let newRow = { ...row };
+            newRow.type = value;
+            setRow(newRow)
+        }
     }
     
     const changeMods = (e) => {
@@ -49,7 +51,7 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
             row.id = uuidv4();
             parent.elements.push(row);
             editRow(parent);
-        }else {
+        } else {
             row.id = uuidv4();
             addRow(row);
         }

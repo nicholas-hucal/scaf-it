@@ -4,7 +4,6 @@ import api from '../../utils/api';
 import LoginButton from '../../components/LoginButton/LoginButton';
 import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
-import Button from '../../components/Button/Button';
 import SiteLink from '../../components/SiteLink/SiteLink';
 
 const Editor = () => {
@@ -139,8 +138,7 @@ const Editor = () => {
       <section className='editor'>
         <h1 className='editor__heading'>Editor Page</h1>
         <div className='editor__area'>
-          <Button text='add content +' onClick={modalToggle} mod='hollow' />
-          <EditorBlock key={`block-${block.id}`} block={block} rows={rows} actions={{ deleteRow: deleteRow, editRowToggle: editRowToggle, addChildRowToggle: addChildRowToggle }} />
+          <EditorBlock block={block} rows={rows} actions={{ modalToggle: modalToggle, deleteRow: deleteRow, editRowToggle: editRowToggle, addChildRowToggle: addChildRowToggle }} />
         </div>
         {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} rowToEdit={rowToEdit} parent={parent} />}
         <div className='editor__logout'>
