@@ -13,7 +13,6 @@ const Editor = () => {
   // const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(basicRow);
-  const [blockToEdit, setBlockToEdit] = useState(basicRow);
   const [block, setBlock] = useState(basicRow);
   const [modal, setModal] = useState(false);
 
@@ -36,16 +35,6 @@ const Editor = () => {
       });
   }, []);
 
-  const addRow = (row) => {
-    if (block.name === '') {
-      row.kind = 'block';
-      setBlock(row)
-    } else {
-      row.kind = 'element';
-      setRows(rows => [...rows, row])
-    }
-  }
-
   const modalToggle = (e) => {
     e.preventDefault();
     if (modal) {
@@ -62,6 +51,16 @@ const Editor = () => {
       setRowToEdit(block);
     }
     modalToggle(e);
+  }
+
+  const addRow = (row) => {
+    if (block.name === '') {
+      row.kind = 'block';
+      setBlock(row)
+    } else {
+      row.kind = 'element';
+      setRows(rows => [...rows, row])
+    }
   }
 
   const editRow = (rowEdited, block) => {
@@ -99,11 +98,12 @@ const Editor = () => {
     <section className='editor'>
       <h1 className='editor__heading'>Editor Page</h1>
       <div className='editor__area'>
-        <Button text='add content +' onClick={modalToggle} mod='hollow'/>
-        <EditorBlock key={`block-${block.id}`} block={block} rows={rows} actions={{deleteRow: deleteRow, editRow: editRowToggle}}/>
+        <Button text='add content +' onClick={modalToggle} mod='hollow' />
+        <EditorBlock key={`block-${block.id}`} block={block} rows={rows} actions={{ deleteRow: deleteRow, editRowToggle: editRowToggle }} />
       </div>
-      {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} blockToEdit={blockToEdit} rowToEdit={rowToEdit}/>}
+      {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} rowToEdit={rowToEdit} />}
     </section>
+
   );
 }
 

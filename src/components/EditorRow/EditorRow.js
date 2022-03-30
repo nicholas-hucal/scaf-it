@@ -13,7 +13,7 @@ const EditorRow = ({ row, block, actions }) => {
     return (
         <div className='editor-row'>
             <div className='editor-row__buttons'>
-                <button className='editor-row__action' onClick={(e) => actions.editRow(e, row.id)}><img className='editor-row__icon' src={editIcon} alt="edit row" /></button>
+                <button className='editor-row__action' onClick={(e) => actions.editRowToggle(e, row.id)}><img className='editor-row__icon' src={editIcon} alt="edit row" /></button>
                 <button className='editor-row__action' onClick={(e) => actions.deleteRow(e, row.id)}><img className='editor-row__icon' src={deleteIcon} alt="delete row" /></button>
             </div>
             <pre className='editor-row__code'>

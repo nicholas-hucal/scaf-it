@@ -16,10 +16,9 @@ const Autocomplete = ({ suggestions, changeType, value }) => {
     const onChange = (e) => {
         const userInput = e.target.value;
 
-        const unLinked = suggestions.filter(
-            (suggestion) =>
-                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        );
+        const unLinked = suggestions.filter(suggestion => {
+            return suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        });
 
         setInput(formatText(e.target.value));
         changeType(formatText(e.target.value));
