@@ -4,16 +4,16 @@ import api from '../../utils/api';
 import LoginButton from '../../components/LoginButton/LoginButton';
 import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
-import SiteLink from '../../components/SiteLink/SiteLink';
-import { v4 as uuidv4 } from 'uuid';
 import Button from '../../components/Button/Button';
 
 const Editor = () => {
-  const [authStatus, setAuthStatus] = useState(true);
+  const basicRow = { name: '', type: '', modifiers: [] }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [profileData, setProfileData] = useState(null);
+  // const [authStatus, setAuthStatus] = useState(true);
+  // const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
-  const [block, setBlock] = useState({ name: '', type: 'div', modifiers: [] });
+  const [rowToEdit, setRowToEdit] = useState(basicRow);
+  const [block, setBlock] = useState(basicRow);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -21,13 +21,13 @@ const Editor = () => {
     api
       .authorization()
       .then(res => {
-        setAuthStatus(false)
+        // setAuthStatus(false)
         setIsLoggedIn(true)
-        setProfileData(res.data)
+        // setProfileData(res.data)
       })
       .catch((err) => {
         if (err.response.status === 401) {
-          setAuthStatus(false);
+          // setAuthStatus(false);
           setIsLoggedIn(false);
         } else {
           console.log('Error authenticating', err);
@@ -47,7 +47,29 @@ const Editor = () => {
 
   const modalToggle = (e) => {
     e.preventDefault();
-    setModal(!modal)
+    if (modal) {
+      setRowToEdit(basicRow);
+    }
+    setModal(!modal);
+  }
+
+  const editRowToggle = (e, id) => {
+    setRowToEdit(rows.find(row => row.id === id));
+    modalToggle(e);
+  }
+
+  const editRow = (rowEdited) => {
+    const currentRow = rows.findIndex(row => row.id === rowEdited.id);
+    const currentRows = [...rows];
+    currentRows[currentRow] = rowEdited;
+    setRows(currentRows);
+  }
+
+  const deleteRow = (e, id) => {
+    const currentRow = rows.findIndex(row => row.id === id);
+    const currentRows = [...rows];
+    currentRows.splice(currentRow, 1)
+    setRows(currentRows);
   }
 
   if (!isLoggedIn) {
@@ -59,10 +81,9 @@ const Editor = () => {
       <h1 className='editor__heading'>Editor Page</h1>
       <div className='editor__area'>
         <Button text='add content +' onClick={modalToggle} mod='hollow'/>
-        <EditorBlock key={`block-${block.id}`} block={block} rows={rows} />
+        <EditorBlock key={`block-${block.id}`} block={block} rows={rows} actions={{deleteRow: deleteRow, editRow: editRowToggle}}/>
       </div>
-      {/* <SiteLink text="logout" type="anchor" to={api.logOut} /> */}
-      {modal && <Modal modalToggle={modalToggle} addRow={addRow} block={block}/>}
+      {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} rowToEdit={rowToEdit}/>}
     </section>
   );
 }

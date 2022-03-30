@@ -2,7 +2,7 @@ import './EditorBlock.scss';
 import React from 'react';
 import EditorRow from '../../components/EditorRow/EditorRow';
 
-const EditorBlock = ({ block, rows }) => {
+const EditorBlock = ({ block, rows, actions }) => {
     const formatMods = (mods) => {
         return mods.map(mod => {
             return mod !== '' ? ` ${block.name}--${mod}` : ''
@@ -19,7 +19,7 @@ const EditorBlock = ({ block, rows }) => {
                 <code>
                     {`<${block.type} className="${block.kind === 'element' ? `${block.name}__${block.name}` : block.name}${formatMods(block.modifiers)}">`}
                         {rows.map(row => {
-                            return <EditorRow key={`row-${row.id}`} block={block} row={row} />
+                            return <EditorRow key={`row-${row.id}`} block={block} row={row} actions={actions} />
                         })}
                     {`</${block.type}>`}
                 </code>

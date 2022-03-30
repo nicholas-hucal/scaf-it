@@ -2,6 +2,30 @@
 @use '../../styles/partials/typography';
 
 .editor-row {
+    position: relative;
+
+    &__buttons {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__action {
+        margin: 0;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    &__icon {
+        margin: 0;
+        padding: 0;
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+
     &__code {
         background-color: colors.$primary-green;
         border-radius: 0.25rem;

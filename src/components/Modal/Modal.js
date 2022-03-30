@@ -1,5 +1,5 @@
 import './Modal.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import close from '../../assets/icons/cancel-small.svg';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
@@ -7,9 +7,9 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
 import { v4 as uuidv4 } from 'uuid';
 
-const Modal = ({ modalToggle, addRow, block }) => {
-    const [row, setRow] = useState({ name: '', type: '', modifiers: [] });
-    
+const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit }) => {
+    const [row, setRow] = useState(rowToEdit ? rowToEdit : { name: '', type: '', modifiers: [] });
+
     const formatMods = (mods) => {
         return mods.map(mod => {
             return mod !== '' ? ` ${block.name !== '' ? `${block.name}__` : ''}${row.name}--${mod}` : ''
@@ -54,8 +54,13 @@ const Modal = ({ modalToggle, addRow, block }) => {
 
     const submitRow = (e) => {
         e.preventDefault();
-        row.id = uuidv4();
-        addRow(row);
+        if (rowToEdit.name) {
+            console.log('here')
+            editRow(row);
+        } else {
+            row.id = uuidv4();
+            addRow(row);
+        }
         modalToggle(e)
     } 
 
