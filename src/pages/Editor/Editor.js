@@ -13,6 +13,7 @@ const Editor = () => {
   // const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(basicRow);
+  const [blockToEdit, setBlockToEdit] = useState(basicRow);
   const [block, setBlock] = useState(basicRow);
   const [modal, setModal] = useState(false);
 
@@ -53,23 +54,37 @@ const Editor = () => {
     setModal(!modal);
   }
 
-  const editRowToggle = (e, id) => {
-    setRowToEdit(rows.find(row => row.id === id));
+  const editRowToggle = (e, id, block) => {
+    if (!block) {
+      setRowToEdit(rows.find(row => row.id === id));
+    } else {
+      block.parent = true;
+      setRowToEdit(block);
+    }
     modalToggle(e);
   }
 
-  const editRow = (rowEdited) => {
-    const currentRow = rows.findIndex(row => row.id === rowEdited.id);
-    const currentRows = [...rows];
-    currentRows[currentRow] = rowEdited;
-    setRows(currentRows);
+  const editRow = (rowEdited, block) => {
+    if (!block) {
+      const currentRow = rows.findIndex(row => row.id === rowEdited.id);
+      const currentRows = [...rows];
+      currentRows[currentRow] = rowEdited;
+      setRows(currentRows);
+    } else {
+      setBlock(rowEdited);
+    }
   }
 
-  const deleteRow = (e, id) => {
-    const currentRow = rows.findIndex(row => row.id === id);
-    const currentRows = [...rows];
-    currentRows.splice(currentRow, 1)
-    setRows(currentRows);
+  const deleteRow = (e, id, block) => {
+    if (!block) {
+      const currentRow = rows.findIndex(row => row.id === id);
+      const currentRows = [...rows];
+      currentRows.splice(currentRow, 1)
+      setRows(currentRows);
+    } else {
+      setRows([])
+      setBlock(basicRow);
+    }
   }
 
   if (!isLoggedIn) {
@@ -83,7 +98,7 @@ const Editor = () => {
         <Button text='add content +' onClick={modalToggle} mod='hollow'/>
         <EditorBlock key={`block-${block.id}`} block={block} rows={rows} actions={{deleteRow: deleteRow, editRow: editRowToggle}}/>
       </div>
-      {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} rowToEdit={rowToEdit}/>}
+      {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} blockToEdit={blockToEdit} rowToEdit={rowToEdit}/>}
     </section>
   );
 }

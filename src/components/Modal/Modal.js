@@ -12,7 +12,7 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit }) => {
 
     const formatMods = (mods) => {
         return mods.map(mod => {
-            return mod !== '' ? ` ${block.name !== '' ? `${block.name}__` : ''}${row.name}--${mod}` : ''
+            return mod !== '' ? ` ${block.name !== '' && !row.parent ? `${block.name}__` : ''}${row.name}--${mod}` : ''
         }).join('')
     }
     
@@ -40,23 +40,11 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit }) => {
         newRow.modifiers = formatted;
         setRow(newRow)
     }
-    
-    const keyDownMods = (e) => {
-        if (e.key === "Tab") {
-            e.preventDefault();
-            let mods = e.target.value + ', ';
-            let splitMods = mods.split(', ');
-            let newRow = { ...row };
-            newRow.modifiers = splitMods;
-            setRow(newRow)
-        }
-    }
 
     const submitRow = (e) => {
         e.preventDefault();
         if (rowToEdit.name) {
-            console.log('here')
-            editRow(row);
+            editRow(row, row.parent);
         } else {
             row.id = uuidv4();
             addRow(row);
@@ -74,15 +62,15 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit }) => {
                     <pre className='modal__code'>
                         <code>
                             {row.type === 'input' || row.type === 'img' ?
-                                `<${row.type} className="${block.name !== '' ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"/>`
+                                `<${row.type} className="${block.name !== '' && !row.parent ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"/>`
                                 :
-                                `<${row.type} className="${block.name !== '' ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"></${row.type}>`
+                                `<${row.type} className="${block.name !== '' && !row.parent ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"></${row.type}>`
                             }
                         </code>
                     </pre>
                     <Autocomplete suggestions={suggestions} value={row.type} changeType={changeType} />
                     <Input label='element name' value={row.name} onChange={changeName} />
-                    <Input label='modifiers' value={row.modifiers.join(', ')} onKeyDown={keyDownMods} onChange={changeMods} />
+                    <Input label='modifiers' value={row.modifiers.join(', ')} onChange={changeMods} />
                     <Button className="modal__submit" text='save' onClick={(e) => submitRow(e)}/>
                 </div>
             </div>
