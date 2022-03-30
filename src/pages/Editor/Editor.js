@@ -69,8 +69,10 @@ const Editor = () => {
       const currentRow = rows.findIndex(row => row.id === rowEdited.id);
       const currentRows = [...rows];
       currentRows[currentRow] = rowEdited;
+      // api call to set element
       setRows(currentRows);
     } else {
+      // api call to set block
       setBlock(rowEdited);
     }
   }
@@ -80,8 +82,10 @@ const Editor = () => {
       const currentRow = rows.findIndex(row => row.id === id);
       const currentRows = [...rows];
       currentRows.splice(currentRow, 1)
+      // api call to delete element
       setRows(currentRows);
     } else {
+      // api call to delete block
       setRows([])
       setBlock(basicRow);
     }
