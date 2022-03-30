@@ -23,7 +23,6 @@ const containers = [
     'h4',
     'h5',
     'p'
-
 ]
 
-export default containers;
+export default containers.sort();
