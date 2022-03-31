@@ -6,8 +6,9 @@ import Button from '../Button/Button';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
 import { v4 as uuidv4 } from 'uuid';
+import api from '../../utils/api';
 
-const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
+const Modal = ({ profileData, modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
     const [row, setRow] = useState(rowToEdit ? rowToEdit : { name: '', type: '', modifiers: [] });
 
     const formatMods = (mods) => {
@@ -44,6 +45,8 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
     }
 
     const submitRow = (e) => {
+        const final = {...row};
+        final.user_id = profileData.id;
         e.preventDefault();
         if (rowToEdit.name) {
             editRow(row, row.parent);
@@ -51,9 +54,23 @@ const Modal = ({ modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
             row.id = uuidv4();
             parent.elements.push(row);
             editRow(parent);
-        } else {
+        } else if ( block.name) {
             row.id = uuidv4();
+            console.log(row)
             addRow(row);
+        } else {
+            //row.id = uuidv4();
+            console.log(final)
+            api.createBlock(final)
+                .then(res => {
+                    console.log(res.data)
+                    addRow(res.data);
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
+            
         }
         modalToggle(e)
     } 

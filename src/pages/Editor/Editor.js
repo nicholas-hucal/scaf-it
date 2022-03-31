@@ -10,7 +10,7 @@ const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [], elements: [] }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [authStatus, setAuthStatus] = useState(true);
-  // const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(basicRow);
   const [block, setBlock] = useState(basicRow);
@@ -24,7 +24,7 @@ const Editor = () => {
       .then(res => {
         // setAuthStatus(false)
         setIsLoggedIn(true)
-        // setProfileData(res.data)
+        setProfileData(res.data)
       })
       .catch((err) => {
         if (err.response.status === 401) {
@@ -66,7 +66,7 @@ const Editor = () => {
 
   const addRow = (row) => {
     if (block.name === '') {
-      row.kind = 'block';
+      //row.kind = 'block';
       setBlock(row)
     } else {
       row.kind = 'element';
@@ -140,7 +140,7 @@ const Editor = () => {
         <div className='editor__area'>
           <EditorBlock block={block} rows={rows} actions={{ modalToggle: modalToggle, deleteRow: deleteRow, editRowToggle: editRowToggle, addChildRowToggle: addChildRowToggle }} />
         </div>
-        {modal && <Modal modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} rowToEdit={rowToEdit} parent={parent} />}
+        {modal && <Modal profileData={profileData} modalToggle={modalToggle} block={block} addRow={addRow} editRow={editRow} rowToEdit={rowToEdit} parent={parent} />}
         <div className='editor__logout'>
           <SiteLink to={api.logOut} text='logout' type='anchor'/>
         </div>
