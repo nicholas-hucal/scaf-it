@@ -113,11 +113,23 @@ const Editor = () => {
   }
 
   const editRow = (row) => {
-    setRows(prev => [...prev].map(existing => existing.id === row.id ? row : existing))
+    api.editElement(row)
+    .then(res => {
+        setRows(prev => [...prev].map(existing => existing.id === row.id ? res.data : existing))
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const editChild = (row) => {
-    setChildren(prev => [...prev].map(existing => existing.id === row.id ? row : existing))
+    api.editElement(row)
+    .then(res => {
+        setChildren(prev => [...prev].map(existing => existing.id === row.id ? res.data : existing))
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const deleteBlock = () => {
@@ -184,6 +196,8 @@ const Editor = () => {
             editBlock={editBlock}
             editRow={editRow}
             editChild={editChild}
+            setParent={setParent}
+            basicRow={basicRow}
           />
         }
         <div className='editor__logout'>

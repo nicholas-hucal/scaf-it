@@ -10,7 +10,7 @@ const api = {
     editBlock: (block) => axios.put(`${SERVER_URL}/block`, block),
     deleteBlock: (block_id) => axios.delete(`${SERVER_URL}/block/${block_id}`),
     createElement: (element) => axios.post(`${SERVER_URL}/element`, element),
-    editElement: (element) => axios.post(`${SERVER_URL}/element`, element),
+    editElement: (element) => axios.put(`${SERVER_URL}/element`, element),
     deleteElement: (element_id) => axios.delete(`${SERVER_URL}/element/${element_id}`),
 }
 

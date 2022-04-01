@@ -6,8 +6,8 @@ import Button from '../Button/Button';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
 
-const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChild, editBlock, editRow, editChild }) => {
-    const [row, setRow] = useState(rowToEdit ? rowToEdit : { name: '', type: '', modifiers: [] });
+const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChild, editBlock, editRow, editChild, setParent, basicRow }) => {
+    const [row, setRow] = useState(rowToEdit ? rowToEdit : basicRow);
 
     const formatMods = (mods) => {
         return mods.map(mod => {
@@ -69,7 +69,7 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
                 editChild(row)
             }
         }
-        modalToggle()
+        setParent(basicRow)
     } 
 
     return (
