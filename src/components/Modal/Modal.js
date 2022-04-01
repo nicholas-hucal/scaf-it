@@ -5,10 +5,8 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import suggestions from '../../data/containers';
-import { v4 as uuidv4 } from 'uuid';
-import api from '../../utils/api';
 
-const Modal = ({ profileData, modalToggle, addRow, editRow, block, rowToEdit, parent }) => {
+const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChild, editBlock, editRow, editChild }) => {
     const [row, setRow] = useState(rowToEdit ? rowToEdit : { name: '', type: '', modifiers: [] });
 
     const formatMods = (mods) => {
@@ -45,34 +43,29 @@ const Modal = ({ profileData, modalToggle, addRow, editRow, block, rowToEdit, pa
     }
 
     const submitRow = (e) => {
-        const final = {...row};
-        final.user_id = profileData.id;
         e.preventDefault();
-        if (rowToEdit.name) {
-            editRow(row, row.parent);
-        } else if (parent.name) {
-            row.id = uuidv4();
-            parent.elements.push(row);
-            editRow(parent);
-        } else if ( block.name) {
-            row.id = uuidv4();
-            console.log(row)
-            addRow(row);
-        } else {
-            //row.id = uuidv4();
-            console.log(final)
-            api.createBlock(final)
-                .then(res => {
-                    console.log(res.data)
-                    addRow(res.data);
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-
-            
+        if (!parent.kind) {
+            if (!rowToEdit.name) {
+                addBlock(row)
+            } else {
+                editBlock(row)
+            }
         }
-        modalToggle(e)
+        if (parent.kind === 'block') {
+            if (!rowToEdit.name) {
+                addRow(row)
+            } else {
+                editRow(row)
+            }
+        }
+        if (parent.kind === 'element') {
+            if (!rowToEdit.name) {
+                addChild(row)
+            } else {
+                editChild(row)
+            }
+        }
+        modalToggle()
     } 
 
     return (

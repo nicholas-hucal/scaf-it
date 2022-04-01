@@ -1,7 +1,7 @@
 @use '../../styles/partials/colors';
 @use '../../styles/partials/typography';
 
-.editor-row {
+.editor-child {
     position: relative;
 
     &__buttons {
@@ -30,8 +30,8 @@
     }
 
     &__code {
-        background-color: colors.$primary-grey;
-        color: colors.$primary-black;
+        background-color: colors.$primary-blue;
+        color: colors.$primary-white;
         border-radius: 0.25rem;
         padding: 1.5rem 1rem 1.5rem 1rem;
         margin: 1rem 0;

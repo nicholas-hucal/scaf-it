@@ -3,25 +3,25 @@ import React from 'react';
 import deleteIcon from '../../assets/icons/delete.svg';
 import editIcon from '../../assets/icons/edit.svg';
 import addIcon from '../../assets/icons/add.svg';
+import EditorChild from '../EditorChild/EditorChild';
 
-const EditorRow = ({ row, block, actions, child }) => {
+const EditorRow = ({ block, row, children, rowToggle, childToggle, deleteRow, deleteChild, child }) => {
     const formatMods = (mods) => {
         return mods.map(mod => {
             return mod !== '' ? ` ${block.name}__${row.name}--${mod}` : ''
         }).join('')
     }
-
     return (
         <div className='editor-row'>
             <div className='editor-row__buttons'>
-                <button className='editor-row__action' onClick={(e) => actions.editRowToggle(e, row.id)}>
+                <button className='editor-row__action' onClick={() => rowToggle('edit', row.id)}>
                     <img className='editor-row__icon' src={editIcon} alt="edit row" />
                 </button>
-                <button className='editor-row__action' onClick={(e) => actions.deleteRow(e, row.id)}>
+                <button className='editor-row__action' onClick={() => deleteRow(row.id)}>
                     <img className='editor-row__icon' src={deleteIcon} alt="delete row" />
                 </button>
                 {(!child && (row.type !== 'input' && row.type !== 'img')) &&
-                    <button className='editor-row__action' onClick={(e) => actions.addChildRowToggle(e, row.id)}>
+                    <button className='editor-row__action' onClick={() => childToggle('add', row.id )}>
                         <img className='editor-row__icon' src={addIcon} alt="add row" />
                     </button>
                 }
@@ -35,8 +35,15 @@ const EditorRow = ({ row, block, actions, child }) => {
                         `<${row.type} className="${block.name}__${row.name}${formatMods(row.modifiers)}">`
                     }
                     {(row.type !== 'input' && row.type !== 'img') &&
-                        row.elements.map(element => {
-                            return <EditorRow key={`row-${element.id}`} block={block} row={element} actions={actions} child={true}/>
+                        children.map(child => {
+                                return child.parent_id === row.id && 
+                                <EditorChild
+                                    key={`child-${child.id}`}
+                                    block={block}
+                                    row={child}
+                                    childToggle={childToggle}
+                                    deleteChild={deleteChild}
+                                />
                         })
                     }
                     {(row.type !== 'input' && row.type !== 'img') &&
