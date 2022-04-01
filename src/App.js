@@ -5,7 +5,6 @@ import Home from './pages/Home/Home';
 import Editor from './pages/Editor/Editor';
 import Error from './pages/Error/Error'
 import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -19,7 +18,6 @@ const App = () => {
             <Route path="/error" component={Error}/>
           </Switch>
         </main>
-        <Footer />
       </BrowserRouter>
     </div>
   );

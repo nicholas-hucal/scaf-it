@@ -56,8 +56,8 @@ const Autocomplete = ({ suggestions, changeType, value }) => {
     };
 
     return (
-        <>
-            <label className='autocomplete'>
+        <div className='autocomplete'>
+            <label className='autocomplete__label'>
                 element type
                 <input
                     className='autocomplete__field'
@@ -74,7 +74,7 @@ const Autocomplete = ({ suggestions, changeType, value }) => {
                     activeSuggestionIndex={activeSuggestionIndex}
                 />
             }
-        </>
+        </div>
     )
 }
 

@@ -2,6 +2,8 @@
 @use '../../styles/partials/typography';
 
 .autocomplete {
+    position: relative;
+
     &__field {
         width: 100%;
         box-sizing: border-box;
