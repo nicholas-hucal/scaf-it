@@ -6,6 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
 import SiteLink from '../../components/SiteLink/SiteLink';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../../components/Button/Button';
 
 const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
@@ -163,6 +164,16 @@ const Editor = () => {
       })
   }
 
+  const submitComponent = (block) => {
+    api.createComponent(block)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   if (!isLoggedIn) {
     return <LoginButton title='Please Login' />
   }
@@ -200,8 +211,9 @@ const Editor = () => {
             basicRow={basicRow}
           />
         }
-        <div className='editor__logout'>
+        <div className='editor__actions'>
           <SiteLink to={api.logOut} text='logout' type='anchor' />
+          {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
         </div>
       </section>
     </>

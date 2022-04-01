@@ -4,8 +4,8 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const api = {
     authorization: () => axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true }),
     logOut: `${SERVER_URL}/auth/logout`,
-    createZip: () => axios.get(`${SERVER_URL}`),
-    submitComponent: (component) => axios.post(`${SERVER_URL}/components`, component),
+    createComponent: (block) => axios.post(`${SERVER_URL}/components/create`, block),
+    getComponent: (block) => axios.post(`${SERVER_URL}/components`, block),
     createBlock: (block) => axios.post(`${SERVER_URL}/block`, block),
     editBlock: (block) => axios.put(`${SERVER_URL}/block`, block),
     deleteBlock: (block_id) => axios.delete(`${SERVER_URL}/block/${block_id}`),
