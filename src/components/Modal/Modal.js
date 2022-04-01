@@ -44,7 +44,9 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
 
     const submitRow = (e) => {
         e.preventDefault();
+        row.parent = parent;
         if (!parent.kind) {
+            row.kind = 'block';
             if (!rowToEdit.name) {
                 addBlock(row)
             } else {
@@ -52,6 +54,7 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
             }
         }
         if (parent.kind === 'block') {
+            row.kind = 'element';
             if (!rowToEdit.name) {
                 addRow(row)
             } else {
@@ -59,6 +62,7 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
             }
         }
         if (parent.kind === 'element') {
+            row.kind = 'child';
             if (!rowToEdit.name) {
                 addChild(row)
             } else {

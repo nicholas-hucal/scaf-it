@@ -8,7 +8,7 @@ import SiteLink from '../../components/SiteLink/SiteLink';
 import { v4 as uuidv4 } from 'uuid';
 
 const Editor = () => {
-  const basicRow = { name: '', type: '', modifiers: [], elements: [] }
+  const basicRow = { name: '', type: '', modifiers: [] }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [authStatus, setAuthStatus] = useState(true);
   const [profileData, setProfileData] = useState(null);
@@ -38,25 +38,9 @@ const Editor = () => {
       });
   }, []);
 
-  const addUserId = (row) => {
-    const final = { ...row };
-    final.user_id = profileData.id;
-    return final;
-  }
-
-  const blockToggle = (action) => {
-    if (action === 'edit') {
-      setRowToEdit({...block})
-    }
-    modalToggle();
-  }
-
-  const rowToggle = (action, id) => {
-    if (action === 'edit') {
-      setRowToEdit({...rows.find(row => row.id === id)});
-    }
-    setParent({...block})
-  }
+  useEffect(() => {
+    setModal(prev => !prev);
+  }, [parent]);
 
   const modalToggle = () => {
     if (modal) {
@@ -65,19 +49,30 @@ const Editor = () => {
     setModal(!modal);
   }
 
-  useEffect(() => {
-      setModal(prev => !prev);
-  }, [parent]);
+  const blockToggle = (action) => {
+    if (action === 'edit') {
+      setRowToEdit({ ...block })
+    }
+    modalToggle();
+  }
+
+  const rowToggle = (action, id) => {
+    if (action === 'edit') {
+      setRowToEdit({ ...rows.find(row => row.id === id) });
+    }
+    setParent({ ...block })
+  }
 
   const childToggle = (action, parent_id, id) => {
     if (action === 'edit') {
-      setRowToEdit({...children.find(row => row.id === id)});
+      setRowToEdit({ ...children.find(row => row.id === id) });
     }
-    setParent({...rows.find(row => row.id === parent_id)})
+    setParent({ ...rows.find(row => row.id === parent_id) })
   }
 
   const addBlock = (row) => {
-    api.createBlock(addUserId(row))
+    row.user_id = profileData.id;
+    api.createBlock(row)
       .then(res => {
         setBlock(res.data)
       })
@@ -87,78 +82,79 @@ const Editor = () => {
   }
 
   const addRow = (row) => {
-    row.id = uuidv4();
-    row.kind = 'element';
-    setRows(prev => [...prev, row])
-
-    // api.createElement(row)
-    //   .then(res => {
-    //     setRows(prev => [...prev, res.data])
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
+    api.createElement(row)
+      .then(res => {
+        setRows(prev => [...prev, res.data])
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const addChild = (row) => {
-    row.id = uuidv4();
-    row.kind = 'child';
-    row.parent_id = parent.id;
-    setChildren(prev => [...prev, row])
+    // row.id = uuidv4();
+    // row.kind = 'child';
+    // row.parent_id = parent.id;
+    // setChildren(prev => [...prev, row])
+
+    api.createElement(row)
+      .then(res => {
+        console.log(res.data)
+        setChildren(prev => [...prev, res.data])
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const editBlock = (row) => {
-    api.editBlock(addUserId(row))
-    .then(res => {
-      setBlock(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    row.user_id = profileData.id;
+    api.editBlock(row)
+      .then(res => {
+        setBlock(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
-  const editRow = (rowa) => {
-    const currentRows = [...rows];
-    let foundIndex = rows.findIndex(row => row.id === rowa.id);
-    if (foundIndex !== -1) {
-      currentRows[foundIndex] = rowa;
-      setRows(currentRows);
-    }
+  const editRow = (row) => {
+    setRows(prev => [...prev].map(existing => existing.id === row.id ? row : existing))
   }
 
   const editChild = (row) => {
-    
+    setChildren(prev => [...prev].map(existing => existing.id === row.id ? row : existing))
   }
 
   const deleteBlock = () => {
     api.deleteBlock(block)
-        .then(response => {
-          setRows([])
-          setBlock(basicRow);
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      .then(response => {
+        setRows([])
+        setBlock(basicRow);
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const deleteRow = (id) => {
     api.deleteElement(id)
-        .then((res) => {
-          const currentRows = [...rows];
-          const foundIndex = rows.findIndex(row => row.id === id);
-          if (foundIndex !== -1) {
-            currentRows.splice(foundIndex, 1)
-          } else {
-            currentRows.forEach((row, index) => {
-              const foundChildIndex = row.elements.findIndex(row => row.id === id);
-              if (foundChildIndex !== -1) {
-                row.elements.splice(foundChildIndex, 1)
-                currentRows[index] = row;
-              }
-            })
-          }
-          setRows(currentRows);
-        })
+      .then((res) => {
+        const currentRows = [...rows];
+        const foundIndex = rows.findIndex(row => row.id === id);
+        if (foundIndex !== -1) {
+          currentRows.splice(foundIndex, 1)
+        } else {
+          currentRows.forEach((row, index) => {
+            const foundChildIndex = row.elements.findIndex(row => row.id === id);
+            if (foundChildIndex !== -1) {
+              row.elements.splice(foundChildIndex, 1)
+              currentRows[index] = row;
+            }
+          })
+        }
+        setRows(currentRows);
+      })
   }
 
   const deleteChild = (id) => {

@@ -12,7 +12,7 @@ const EditorChild = ({ block, row, childToggle, deleteChild }) => {
     return (
         <div className='editor-child'>
             <div className='editor-child__buttons'>
-                <button className='editor-child__action' onClick={() => childToggle('edit', row.id)}>
+                <button className='editor-child__action' onClick={() => childToggle('edit', row.parent_id, row.id)}>
                     <img className='editor-child__icon' src={editIcon} alt="edit row" />
                 </button>
                 <button className='editor-child__action' onClick={() => deleteChild(row.id)}>
