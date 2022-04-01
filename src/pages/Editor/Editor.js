@@ -92,14 +92,8 @@ const Editor = () => {
   }
 
   const addChild = (row) => {
-    // row.id = uuidv4();
-    // row.kind = 'child';
-    // row.parent_id = parent.id;
-    // setChildren(prev => [...prev, row])
-
     api.createElement(row)
       .then(res => {
-        console.log(res.data)
         setChildren(prev => [...prev, res.data])
       })
       .catch(err => {
@@ -127,7 +121,7 @@ const Editor = () => {
   }
 
   const deleteBlock = () => {
-    api.deleteBlock(block)
+    api.deleteBlock(block.id)
       .then(response => {
         setRows([])
         setBlock(basicRow);
@@ -140,25 +134,21 @@ const Editor = () => {
   const deleteRow = (id) => {
     api.deleteElement(id)
       .then((res) => {
-        const currentRows = [...rows];
-        const foundIndex = rows.findIndex(row => row.id === id);
-        if (foundIndex !== -1) {
-          currentRows.splice(foundIndex, 1)
-        } else {
-          currentRows.forEach((row, index) => {
-            const foundChildIndex = row.elements.findIndex(row => row.id === id);
-            if (foundChildIndex !== -1) {
-              row.elements.splice(foundChildIndex, 1)
-              currentRows[index] = row;
-            }
-          })
-        }
-        setRows(currentRows);
+        setRows(prev => [...prev].filter(existing => existing.id !== id));
+      })
+      .catch(err => {
+        console.log(err);
       })
   }
 
   const deleteChild = (id) => {
-
+    api.deleteElement(id)
+      .then((res) => {
+        setChildren(prev => [...prev].filter(existing => existing.id !== id));
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   if (!isLoggedIn) {
