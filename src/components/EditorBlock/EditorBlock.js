@@ -32,7 +32,7 @@ const EditorBlock = ({ block, rows, children, blockToggle, rowToggle, childToggl
                     </button>
                 </div>
                 <code>
-                    {`<${block.type} className="${block.kind === 'element' ? `${block.name}__${block.name}` : block.name}${formatMods(block.modifiers)}">`}
+                    {`<${block.type} className="${block.name}${formatMods(block.modifiers)}">`}
                         {rows.map(row => {
                             return <EditorRow
                                 key={`row-${row.id}`}

@@ -31,6 +31,14 @@
         padding: 3rem 2rem;
     }
 
+    &__error {
+        background-color: colors.$error-bg;
+        color: colors.$error-border;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid colors.$error-border;
+    }
+
     &__body {
         display: flex;
         flex-direction: column;
