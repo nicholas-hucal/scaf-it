@@ -5,13 +5,13 @@ import LoginButton from '../../components/LoginButton/LoginButton';
 import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
 import SiteLink from '../../components/SiteLink/SiteLink';
-import { v4 as uuidv4 } from 'uuid';
 import Button from '../../components/Button/Button';
+import Loading from '../../components/Loading/Loading';
 
 const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [authStatus, setAuthStatus] = useState(true);
+  const [authStatus, setAuthStatus] = useState(true);
   const [profileData, setProfileData] = useState(null);
   const [rows, setRows] = useState([]);
   const [children, setChildren] = useState([]);
@@ -25,13 +25,13 @@ const Editor = () => {
     api
       .authorization()
       .then(res => {
-        // setAuthStatus(false)
         setIsLoggedIn(true)
+        setAuthStatus(false)
         setProfileData(res.data)
       })
       .catch((err) => {
         if (err.response.status === 401) {
-          // setAuthStatus(false);
+          setAuthStatus(false);
           setIsLoggedIn(false);
         } else {
           console.log('Error authenticating', err);
@@ -115,7 +115,7 @@ const Editor = () => {
 
   const editRow = (row) => {
     api.editElement(row)
-    .then(res => {
+      .then(res => {
         setRows(prev => [...prev].map(existing => existing.id === row.id ? res.data : existing))
       })
       .catch(err => {
@@ -125,7 +125,7 @@ const Editor = () => {
 
   const editChild = (row) => {
     api.editElement(row)
-    .then(res => {
+      .then(res => {
         setChildren(prev => [...prev].map(existing => existing.id === row.id ? res.data : existing))
       })
       .catch(err => {
@@ -175,49 +175,52 @@ const Editor = () => {
   }
 
   if (!isLoggedIn) {
-    return <LoginButton title='Please Login' />
+    if (authStatus) {
+      return <Loading />
+    } else {
+      return <LoginButton title='Please Login' />
+    }
   }
-
-  return (
-    <>
-      <section className='editor'>
-        <h1 className='editor__heading'>Editor Page</h1>
-        <div className='editor__area'>
-          <EditorBlock
-            block={block}
-            rows={rows}
-            children={children}
-            deleteBlock={deleteBlock}
-            deleteRow={deleteRow}
-            deleteChild={deleteChild}
-            blockToggle={blockToggle}
-            rowToggle={rowToggle}
-            childToggle={childToggle}
-          />
-        </div>
-        {modal &&
-          <Modal
-            modalToggle={modalToggle}
-            block={block}
-            parent={parent}
-            rowToEdit={rowToEdit}
-            addBlock={addBlock}
-            addRow={addRow}
-            addChild={addChild}
-            editBlock={editBlock}
-            editRow={editRow}
-            editChild={editChild}
-            setParent={setParent}
-            basicRow={basicRow}
-          />
-        }
-        <div className='editor__actions'>
-          <SiteLink to={api.logOut} text='logout' type='anchor' />
-          {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
-        </div>
-      </section>
-    </>
-  );
+    return (
+      <>
+        <section className='editor'>
+          <h1 className='editor__heading'>Editor Page</h1>
+          <div className='editor__area'>
+            <EditorBlock
+              block={block}
+              rows={rows}
+              children={children}
+              deleteBlock={deleteBlock}
+              deleteRow={deleteRow}
+              deleteChild={deleteChild}
+              blockToggle={blockToggle}
+              rowToggle={rowToggle}
+              childToggle={childToggle}
+            />
+          </div>
+          {modal &&
+            <Modal
+              modalToggle={modalToggle}
+              block={block}
+              parent={parent}
+              rowToEdit={rowToEdit}
+              addBlock={addBlock}
+              addRow={addRow}
+              addChild={addChild}
+              editBlock={editBlock}
+              editRow={editRow}
+              editChild={editChild}
+              setParent={setParent}
+              basicRow={basicRow}
+            />
+          }
+          <div className='editor__actions'>
+            <SiteLink to={api.logOut} text='logout' type='anchor' />
+            {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
+          </div>
+        </section>
+      </>
+    );
 }
 
 export default Editor;

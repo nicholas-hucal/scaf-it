@@ -9,6 +9,10 @@
     background-color: transparent;
     border-top: 2.5vw solid transparent;
 
+    &--animate {
+        animation: loading 1s ease-in-out infinite alternate;
+    }
+
     &--last {
         border-bottom: 2.5vw solid transparent;
         height: 17vw;
@@ -30,4 +34,18 @@
             border-top: 12vw solid transparent;
         }
     }
+@keyframes loading {
+    0% {
+        transform: scaleX(100%);
+    }
+
+    50% {
+        transform: scaleX(80%);
+    }
+
+    100% {
+        transform: scaleX(100%);
+    }
+    
+}
 }

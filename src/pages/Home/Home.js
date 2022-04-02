@@ -6,6 +6,7 @@ import Card from '../../components/Card/Card';
 import homepage from '../../data/homepage';
 import Footer from '../../components/Footer/Footer';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../../components/Button/Button';
 
 const Home = () => {
 
@@ -20,7 +21,8 @@ const Home = () => {
                     <div className='home__hero-left'>
                         <img className='home__logo' src={homepage.logo} alt={homepage.logoAlt} />
                         <h1 className='home__heading'>{homepage.heading}</h1>
-                        <SiteLink to={homepage.link} text={homepage.linkText} />
+                        {/* <SiteLink to={homepage.link} text={homepage.linkText} /> */}
+                        <Button mod="white" text="to the editor"/>
                     </div>
                     <div className='home__hero-right'>
                         <img className='home__background-image' src={homepage.background} alt={homepage.backgroundAlt} />

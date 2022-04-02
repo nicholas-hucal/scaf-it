@@ -2,18 +2,37 @@
 @use '../../styles/partials/typography';
 
 .button {
-    background-color: colors.$primary-green;
-    border: 1px solid colors.$primary-green;
-    color: colors.$primary-white;
+    background-color: colors.$primary-grey;
+    border: none;
+    border-top-right-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    overflow: hidden;
+    color: colors.$primary-blue;
     font-family: 'Montserrat', sans-serif;
     padding: 0.5rem 2rem;
     font-size: 1.25rem;
     font-weight: 300;
-    border-radius: 0.25rem;
     cursor: pointer;
+    position: relative;
 
-    &--hollow {
+    &--white {
         background-color: colors.$primary-white;
-        color: colors.$primary-green;
+    }
+
+    &__triangle {
+        position: absolute;
+
+        &--left {
+            left: 0;
+            top: 0;
+            border-left: 2.5rem solid colors.$primary-blue;
+            border-bottom: 1.5rem solid transparent;
+        }
+        &--right {
+            right: 0;
+            bottom: 0;
+            border-right: 2.5rem solid colors.$primary-green;
+            border-top: 1.5rem solid transparent;
+        }
     }
 }
