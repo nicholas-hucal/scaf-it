@@ -1,12 +1,15 @@
 import './Home.scss';
 import React, {useEffect} from 'react';
-import SiteLink from '../../components/SiteLink/SiteLink';
+import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import Triangle from '../../components/Triangle/Triangle';
 import Card from '../../components/Card/Card';
-import homepage from '../../data/homepage';
 import Footer from '../../components/Footer/Footer';
-import { v4 as uuidv4 } from 'uuid';
 import Button from '../../components/Button/Button';
+import homepage from '../../data/homepage';
+import email from '../../assets/icons/mail.svg';
+import github from '../../assets/brands/git-square.svg';
+import linkedIn from '../../assets/brands/linkedin.svg';
 
 const Home = () => {
 
@@ -21,8 +24,7 @@ const Home = () => {
                     <div className='home__hero-left'>
                         <img className='home__logo' src={homepage.logo} alt={homepage.logoAlt} />
                         <h1 className='home__heading'>{homepage.heading}</h1>
-                        {/* <SiteLink to={homepage.link} text={homepage.linkText} /> */}
-                        <Button mod="white" text="to the editor"/>
+                        <Button type="link" to={homepage.link} tri="grey" text={homepage.linkText}/>
                     </div>
                     <div className='home__hero-right'>
                         <img className='home__background-image' src={homepage.background} alt={homepage.backgroundAlt} />
@@ -35,20 +37,23 @@ const Home = () => {
                 <section id='features' className='home__features'>
                     {homepage.cards.map(card => <Card key={uuidv4()} card={card} />)}
                 </section>
-                <section className='home__mailing-list'>
-                    <h2 className='home__sub-heading'>subscribe to our mailing list for updates</h2>
-                    <input className='home__list-input' type='text' placeholder='subscribe with email' />
-                </section>
-                <section id='contact' className='home__contact'>
-                    <div className='home__contact-column'>
-                        <h3>SCAFit</h3>
+                <section className='home__footer'>
+                    <Triangle piece='left'/>
+                    <div className='home__details'>
+                        <div className='home__details-column'>
+                            Contact
+                            <Link to="" className='home__contact-link'><img className='home__contact-icons' src={linkedIn} alt="connect via linkedin"/> LinkedIn</Link>
+                            <Link to="" className='home__contact-link'><img className='home__contact-icons' src={github} alt="connect via github"/> Github</Link> 
+                            <Link to="" className='home__contact-link'><img className='home__contact-icons' src={email} alt="connect via email"/> Email</Link>
+                        </div>
+                        <div className='home__details-column'>
+                            Details
+                        </div>
                     </div>
-                    <div className='home__contact-column'>
-                        <h3>Tech Stack</h3>
-                    </div>
+                    <Triangle piece='right'/>
                 </section>
+                <Footer />
             </div>
-            <Footer />
         </>
     );
 }

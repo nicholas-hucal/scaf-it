@@ -215,7 +215,7 @@ const Editor = () => {
             />
           }
           <div className='editor__actions'>
-            <SiteLink to={api.logOut} text='logout' type='anchor' />
+            <Button to={api.logOut} text='logout' type='anchor' />
             {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
           </div>
         </section>

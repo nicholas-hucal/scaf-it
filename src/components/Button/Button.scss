@@ -2,21 +2,29 @@
 @use '../../styles/partials/typography';
 
 .button {
-    background-color: colors.$primary-grey;
+    background-color: colors.$primary-blue;
     border: none;
-    border-top-right-radius: 0.75rem;
-    border-bottom-left-radius: 0.75rem;
     overflow: hidden;
-    color: colors.$primary-blue;
+    color: colors.$primary-white;
     font-family: 'Montserrat', sans-serif;
-    padding: 0.5rem 2rem;
+    padding: 0.75rem 2.5rem;
     font-size: 1.25rem;
-    font-weight: 300;
+    font-weight: 400;
     cursor: pointer;
     position: relative;
+    text-decoration: none;
+    outline: none;
 
-    &--white {
-        background-color: colors.$primary-white;
+    &:hover {
+        background-color: colors.$secondary-blue;
+    }
+
+    &--green {
+        background-color: colors.$primary-green;
+    }
+
+    &--green:hover {
+        background-color: colors.$secondary-green;
     }
 
     &__triangle {
@@ -25,14 +33,19 @@
         &--left {
             left: 0;
             top: 0;
-            border-left: 2.5rem solid colors.$primary-blue;
-            border-bottom: 1.5rem solid transparent;
+            border-left: 1.5rem solid colors.$primary-white;
+            border-bottom: 1rem solid transparent;
         }
         &--right {
             right: 0;
             bottom: 0;
-            border-right: 2.5rem solid colors.$primary-green;
-            border-top: 1.5rem solid transparent;
+            border-right: 1.5rem solid colors.$primary-white;
+            border-top: 1rem solid transparent;
+        }
+
+        &--grey {
+            border-right-color: colors.$primary-grey;
+            border-left-color: colors.$primary-grey;
         }
     }
 }

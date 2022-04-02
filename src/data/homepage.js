@@ -3,6 +3,9 @@ import background from '../assets/images/scaffold-bg.jpg';
 import sass from '../assets/brands/brand_sass.svg';
 import react from '../assets/brands/brand_react.svg';
 import bem from '../assets/brands/brand_bem.svg';
+import brands from '../assets/brands/brands.svg';
+import editor from '../assets/images/editor.png';
+import code from '../assets/images/code.png';
 
 const details = {
     logo: logo,
@@ -14,22 +17,22 @@ const details = {
     linkText: 'to the editor',
     cards: [
         {
-            heading: 'React',
-            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae purus pulvinar, gravida arcu eu, bibendum magna. Aliquam ultricies, odio sit amet sodales condimentum, tortor metus tempor ex, vel tempus est nibh ut mi. Etiam ac suscipit tellus. Nunc vitae enim sed turpis blandit accumsan. Nunc eget sodales massa. Aenean ut velit blandit, sodales ipsum nec, lobortis lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et suscipit nisi',
-            image: react,
-            alt: 'about this image'
+            heading: 'Foundations',
+            info: 'Starting with fundamentals for component construction in React, we use BEM (block__element--modifier) naming methodology, mixed with the power of SCSS for easy styling of a component. ',
+            image: brands,
+            alt: 'brands of tech used'
         },
         {
-            heading: 'BEM',
-            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae purus pulvinar, gravida arcu eu, bibendum magna. Aliquam ultricies, odio sit amet sodales condimentum, tortor metus tempor ex, vel tempus est nibh ut mi. Etiam ac suscipit tellus. Nunc vitae enim sed turpis blandit accumsan. Nunc eget sodales massa. Aenean ut velit blandit, sodales ipsum nec, lobortis lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et suscipit nisi',
-            image: bem,
-            alt: 'about this image',
+            heading: 'Simple Editor',
+            info: 'The editor is a simple GUI to quickly scaffold a React component. By clicking on the add, edit and delete icons, you are shown an editor modal for content input. Simply add your required information and a component will appear on screen, ready for output to files',
+            image: editor,
+            alt: 'easy to use editor',
             mod: 'reversed'
         },
         {
-            heading: 'SCSS',
-            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae purus pulvinar, gravida arcu eu, bibendum magna. Aliquam ultricies, odio sit amet sodales condimentum, tortor metus tempor ex, vel tempus est nibh ut mi. Etiam ac suscipit tellus. Nunc vitae enim sed turpis blandit accumsan. Nunc eget sodales massa. Aenean ut velit blandit, sodales ipsum nec, lobortis lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et suscipit nisi',
-            image: sass,
+            heading: 'Ready To Use Code',
+            info: 'Once you are done entering your components details, you can click the generate files button to be provided with a zip archive of your code ready for quick deployment into your project, with the required js and scss files already linked.',
+            image: code,
             alt: 'about this image'
         }
     ]

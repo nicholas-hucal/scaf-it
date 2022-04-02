@@ -33,6 +33,16 @@
             border-right: 20vw solid colors.$primary-white;
             border-top: 12vw solid transparent;
         }
+
+        &--green {
+            border-right-color: colors.$primary-green;
+            opacity: 1;
+        }
+
+        &--blue {
+            opacity: 1;
+            border-left-color: colors.$primary-blue;
+        }
     }
 @keyframes loading {
     0% {
