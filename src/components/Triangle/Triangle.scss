@@ -10,10 +10,10 @@
     border-top: 2.5vw solid transparent;
 
     @include mixins.desktop {
-        width: 12.5rem;
-        height: 7.25rem;
+        width: 18.75rem;
+        height: 10.875rem;
         background-color: transparent;
-        border-top: 1.25rem solid transparent;
+        border-top: 1.875rem solid transparent;
     }
 
     &--animate {
@@ -25,7 +25,7 @@
         height: 17vw;
 
         @include mixins.desktop {
-            height: 8.5rem;
+            height: 12.75rem;
         }
     }
 
@@ -40,8 +40,8 @@
             border-bottom: 12vw solid transparent;
             
             @include mixins.desktop {
-                border-left: 10rem solid colors.$primary-white;
-                border-bottom: 6rem solid transparent;
+                border-left: 15rem solid colors.$primary-white;
+                border-bottom: 9rem solid transparent;
             }
         }
         &--right {
@@ -50,8 +50,8 @@
             border-top: 12vw solid transparent;
 
             @include mixins.desktop {
-                border-right: 10rem solid colors.$primary-white;
-                border-top: 6rem solid transparent;
+                border-right: 15rem solid colors.$primary-white;
+                border-top: 9rem solid transparent;
             }
         }
 
