@@ -1,10 +1,10 @@
 import './EditorBlock.scss';
 import React from 'react';
 import EditorRow from '../../components/EditorRow/EditorRow';
-import Button from '../../components/Button/Button';
 import deleteIcon from '../../assets/icons/delete.svg';
 import editIcon from '../../assets/icons/edit.svg';
 import addIcon from '../../assets/icons/add.svg';
+import EditorContent from '../EditorContent/EditorContent';
 
 const EditorBlock = ({ block, rows, children, blockToggle, rowToggle, childToggle, deleteBlock, deleteRow, deleteChild }) => {
     const formatMods = (mods) => {
@@ -14,7 +14,7 @@ const EditorBlock = ({ block, rows, children, blockToggle, rowToggle, childToggl
     }
 
     if (block.name === '') {
-        return <Button text='add content +' onClick={blockToggle} mod='hollow' />;
+        return <EditorContent blockToggle={blockToggle} />
     }
 
     return (

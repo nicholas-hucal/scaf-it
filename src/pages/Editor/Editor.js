@@ -6,6 +6,8 @@ import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
 import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
+import user from '../../assets/icons/user.svg';
+import Download from '../../components/Download/Download';
 
 const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
@@ -18,6 +20,7 @@ const Editor = () => {
   const [block, setBlock] = useState(basicRow);
   const [modal, setModal] = useState(true);
   const [parent, setParent] = useState(basicRow);
+  const [fileToDownload, setFileToDownload] = useState(null)
 
   useEffect(() => {
     document.title = "SCAFit | Editor";
@@ -166,7 +169,7 @@ const Editor = () => {
   const submitComponent = (block) => {
     api.createComponent(block)
       .then(res => {
-        console.log(res.data)
+        setFileToDownload(res.data);
       })
       .catch(err => {
         console.log(err)
@@ -179,11 +182,16 @@ const Editor = () => {
     } else {
       return <LoginButton title='Please Login' />
     }
-  }
+  } else if (fileToDownload) {
+    return <Download download={fileToDownload}/>
+  } else {
     return (
       <>
         <section className='editor'>
-          <h1 className='editor__heading'>Editor Page</h1>
+          <div className='editor__heading-container'>
+            <h1 className='editor__heading'>Editor</h1>
+            <img className='editor__user' src={user} alt="user account area" />
+          </div>
           <div className='editor__area'>
             <EditorBlock
               block={block}
@@ -214,12 +222,13 @@ const Editor = () => {
             />
           }
           <div className='editor__actions'>
-            <Button to={api.logOut} text='logout' type='anchor' />
+            {/* <Button to={api.logOut} text='logout' type='anchor' /> */}
             {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
           </div>
         </section>
       </>
     );
+  }
 }
 
 export default Editor;
