@@ -48,7 +48,8 @@ const Home = () => {
                             <Link to="" className='home__contact-link'><img className='home__contact-icons' src={email} alt="connect via email"/> Email</Link>
                         </div>
                         <div className='home__details-column'>
-                            Details
+                            About<br/>
+                            {homepage.details}
                         </div>
                     </div>
                     <TriangleSingle color="green" piece='right'/>

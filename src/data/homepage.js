@@ -12,10 +12,11 @@ const details = {
     backgroundAlt: 'scaffolding on a worksite',
     link: '/editor',
     linkText: 'to the editor',
+    details: `A project designed for maximizing efficiency in component construction, while attending BrainStation's web development bootcamp in early 2022.`,
     cards: [
         {
             heading: 'Foundations',
-            info: 'Starting with fundamentals for component construction in React, we use BEM (block__element--modifier) naming methodology, mixed with the power of SCSS for easy styling of a component. ',
+            info: 'Starting with the fundamentals for component construction in React, we use BEM (block__element--modifier) naming methodology, mixed with the power of SCSS for easy styling of a component. ',
             image: brands,
             alt: 'brands of tech used'
         },

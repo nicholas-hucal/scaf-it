@@ -23,9 +23,9 @@ const Nav = () => {
                     <img className='nav__menu-image' src={menu} alt="open the menu" />
                 </button>
                 <nav className={`nav__list ${menuStatus ? 'nav__list--closed' : 'nav__list--open'}`}>
-                    <NavHashLink smooth className='nav__list-item' activeClassName='nav__list-item--active' exact to='#home' onClick={toggleMenu}>Home</NavHashLink>
-                    <NavHashLink smooth className='nav__list-item' activeClassName="nav__list-item--active" to='#features' onClick={toggleMenu}>Features</NavHashLink>
-                    <NavHashLink smooth className='nav__list-item' activeClassName="nav__list-item--active" to='#contact' onClick={toggleMenu}>Contact</NavHashLink>
+                    <NavHashLink smooth className='nav__list-item' activeClassName='nav__list-item--active' exact to='/#home' onClick={toggleMenu}>Home</NavHashLink>
+                    <NavHashLink smooth className='nav__list-item' activeClassName="nav__list-item--active" to='/#features' onClick={toggleMenu}>Features</NavHashLink>
+                    <NavHashLink smooth className='nav__list-item' activeClassName="nav__list-item--active" to='/#contact' onClick={toggleMenu}>Contact</NavHashLink>
                     <NavLink className='nav__list-item' activeClassName='nav__list-item--active' to='/editor' onClick={toggleMenu}>Editor</NavLink>
                 </nav>
             </section>
