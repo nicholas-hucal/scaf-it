@@ -1,5 +1,5 @@
 @use '../../styles/partials/colors';
-@use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .nav { 
     background-color: colors.$primary-grey;
@@ -8,15 +8,59 @@
     z-index: 2;
 
     &__container {
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid colors.$secondary-grey;
         display: flex;
-        align-items: flex-start;
         justify-content: space-between;
+        align-items: center;
+
+        @include mixins.tablet {
+            padding: 1rem 2rem;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+    }
+
+    &__menu {
+        background-color: colors.$primary-grey;
+        border: none;
+        padding: 0.5rem 0 0.5rem 0.5rem;
+        cursor: pointer;
+
+        @include mixins.tablet {
+            display: none;
+        }
+    }
+
+    &__menu-image {
+        height: 0.65rem;
     }
 
     &__list {
+        position: absolute;
+        top: 3.3rem;
+        left: 0;
+        right: 0;
+        background-color: colors.$primary-white;
+        padding: 1rem 0;
+        box-sizing: border-box;
         display: flex;
-        gap: 0 0.25rem;
+        flex-direction: column;
+
+        &--closed {
+            -webkit-animation: slide-out 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-out 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        &--open {
+            -webkit-animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @include mixins.tablet {
+            display: flex;
+            gap: 0 0.25rem;
+        }
     }
 
     &__list-item {
@@ -25,6 +69,8 @@
         font-size: 1rem;
         color: colors.$primary-blue;
         text-transform: lowercase;
+        margin: 0.5rem;
+        text-align: center;
 
         &--active {
             background-color: colors.$primary-blue!important;
@@ -45,6 +91,31 @@
     }
 
     &__logo {
-        width: 100%;
+        width: 50%;
+
+        @include mixins.tablet {
+            width: 100%;
+        }
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        -webkit-transform: translateX(0vw);
+        transform: translateX(0vw);
+    }
+    100% {
+        -webkit-transform: translateX(100vw);
+        transform: translateX(100vw);
+    }
+}
+@keyframes slide-in {
+    0% {
+        -webkit-transform: translateX(100vw);
+        transform: translateX(100vw);
+    }
+    100% {
+        -webkit-transform: translateX(0vw);
+        transform: translateX(0vw);
     }
 }

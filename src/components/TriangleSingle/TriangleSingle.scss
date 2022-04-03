@@ -1,0 +1,31 @@
+@use '../../styles/partials/colors';
+@use '../../styles/partials/typography';
+
+.triangle-single {
+    position: relative;
+
+    &__shape {
+        position: absolute;
+
+        &--left {
+            top: 0;
+            left: 0;
+            border-left: 6rem solid colors.$primary-white;
+            border-bottom: 4rem solid transparent;
+        }
+        &--right {
+            bottom: 0;
+            right: 0;
+            border-right: 6rem solid colors.$primary-white;
+            border-top: 4rem solid transparent;
+        }
+
+        &--green {
+            border-right-color: colors.$primary-green;
+        }
+
+        &--blue {
+            border-left-color: colors.$primary-blue;
+        }
+    }
+}

@@ -1,21 +1,38 @@
 @use '../../styles/partials/colors';
 @use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .card {
     display: flex;
     margin-bottom: 2rem;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
+    flex-direction: column;
+
+    @include mixins.tablet {
+        flex-direction: row;
+        margin-bottom: 2rem;
+        gap: 3rem;
+    }
 
     &__details {
-        flex: 1;
+        
+        @include mixins.tablet {
+            flex: 1;
+        }
+       
         &--reversed {
-            order: 2;
+            @include mixins.tablet {
+                order: 1;
+            }
         }
     }
 
     &__image {
-        width: 40%;
+        width: 100%;
+        @include mixins.tablet {
+            width: 40%;
+        }
     }
 
     &__heading {

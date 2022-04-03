@@ -4,7 +4,6 @@ import api from '../../utils/api';
 import LoginButton from '../../components/LoginButton/LoginButton';
 import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
-import SiteLink from '../../components/SiteLink/SiteLink';
 import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
 

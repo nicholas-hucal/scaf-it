@@ -1,21 +1,27 @@
 @use '../../styles/partials/colors';
 @use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .home {
     &__hero {
         display: flex;
-        padding: 1rem 5rem 3rem 5rem;
+        flex-direction: column;
         background-color: colors.$primary-grey;
+        padding: 2rem 1rem;
+        @include mixins.tablet {
+            padding: 1rem 5rem 3rem 5rem;
+        }
     }
 
     &__hero-left {
         flex: 1;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
         color: colors.$typography-grey;
         gap: 1rem;
+        text-align: center;
     }
     
     &__logo {
@@ -34,6 +40,11 @@
         height: 32vw; 
         position: relative;
         overflow: hidden;
+        display: none;
+        
+        @include mixins.tablet {
+            display: block;
+        }
     }
    
     &__triangle {
@@ -51,17 +62,23 @@
     }
 
     &__features {
-        padding: 2rem 2rem 7rem 2rem;
+        padding: 1rem 1rem 3rem 1rem;
+
+        @include mixins.tablet {
+            padding: 2rem 2rem 7rem 2rem;
+        }
     }
 
     &__footer {
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
     }
 
     &__details {
         flex: 1;
         display: flex;
+        flex-direction: column;
+        padding: 3rem;
     }
 
     &__details-column {
@@ -69,6 +86,7 @@
         display: flex;
         flex-direction: column;
         padding-bottom: 2rem;
+
     }
 
     &__contact-icons {

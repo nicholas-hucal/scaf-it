@@ -10,6 +10,7 @@ import homepage from '../../data/homepage';
 import email from '../../assets/icons/mail.svg';
 import github from '../../assets/brands/git-square.svg';
 import linkedIn from '../../assets/brands/linkedin.svg';
+import TriangleSingle from '../../components/TriangleSingle/TriangleSingle';
 
 const Home = () => {
 
@@ -38,7 +39,7 @@ const Home = () => {
                     {homepage.cards.map(card => <Card key={uuidv4()} card={card} />)}
                 </section>
                 <section className='home__footer'>
-                    <Triangle piece='left'/>
+                    <TriangleSingle color="blue" piece='left'/>
                     <div className='home__details'>
                         <div className='home__details-column'>
                             Contact
@@ -50,7 +51,7 @@ const Home = () => {
                             Details
                         </div>
                     </div>
-                    <Triangle piece='right'/>
+                    <TriangleSingle color="green" piece='right'/>
                 </section>
                 <Footer />
             </div>
