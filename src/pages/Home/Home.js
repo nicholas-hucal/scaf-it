@@ -21,7 +21,7 @@ const Home = () => {
     return (
         <>
             <div className='home'>
-                <section className='home__hero'>
+                <section className='home__hero' id='home'>
                     <div className='home__hero-left'>
                         <img className='home__logo' src={homepage.logo} alt={homepage.logoAlt} />
                         <h1 className='home__heading'>{homepage.heading}</h1>
@@ -38,7 +38,7 @@ const Home = () => {
                 <section id='features' className='home__features'>
                     {homepage.cards.map(card => <Card key={uuidv4()} card={card} />)}
                 </section>
-                <section className='home__footer'>
+                <section className='home__footer' id="contact" >
                     <TriangleSingle color="blue" piece='left'/>
                     <div className='home__details'>
                         <div className='home__details-column'>
@@ -53,7 +53,7 @@ const Home = () => {
                     </div>
                     <TriangleSingle color="green" piece='right'/>
                 </section>
-                <Footer />
+                <Footer/>
             </div>
         </>
     );
