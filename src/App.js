@@ -1,5 +1,5 @@
 import './App.scss';
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Editor from './pages/Editor/Editor';
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className='app'>
       <BrowserRouter>
-        <Nav/>
+        <Nav />
         <main className='app__main'>
           <Switch>
             <Route path="/" exact component={Home} />

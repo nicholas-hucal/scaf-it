@@ -2,7 +2,7 @@
 @use "../../styles/partials/mixins";
 
 .editor {
-    padding: 2rem;
+    padding: 1rem;
 
     &__heading {
         margin-bottom: 3rem;
@@ -30,6 +30,8 @@
     &__actions {
         margin-top: 3rem;
         display: flex;
+        gap: 1rem;
+        flex-direction: column;
         justify-content: space-between;
     }
 }

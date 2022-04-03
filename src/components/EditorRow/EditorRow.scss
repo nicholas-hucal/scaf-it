@@ -1,5 +1,5 @@
 @use '../../styles/partials/colors';
-@use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .editor-row {
     position: relative;
@@ -38,6 +38,12 @@
         overflow-x: auto;
         white-space: pre-wrap;
         word-wrap: break-word;
-        margin-left: 2rem;
+        margin-left: 0;
+        font-size: 0.75rem;
+
+        @include mixins.tablet {
+            margin-left: 2rem;
+            font-size: 1rem;
+        }
     }
 }

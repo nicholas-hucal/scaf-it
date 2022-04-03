@@ -1,5 +1,5 @@
 @use '../../styles/partials/colors';
-@use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .modal {
     position: fixed;
@@ -19,16 +19,25 @@
         margin: 0;
         color: colors.$primary-white;
         overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 0.75rem;
+        @include mixins.tablet {
+            font-size: 1rem;
+        }
     }
 
     &__content {
         background-color: #fefefe;
-        margin: 15vh auto;
-        width: 50vw;
+        margin: 15vh 5vw;
         position: relative;
-        padding: 3rem 2rem;
+        padding: 3rem 1rem;
+
+        @include mixins.tablet {
+            padding: 3rem 2rem;
+            margin: 15vh auto;
+            width: 50vw;
+        }
     }
 
     &__error {
@@ -37,6 +46,11 @@
         padding: 1rem;
         border-radius: 0.25rem;
         border: 1px solid colors.$error-border;
+        font-size: 0.75rem;
+
+        @include mixins.tablet {
+            font-size: 1rem;
+        }
     }
 
     &__body {
