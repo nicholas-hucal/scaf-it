@@ -6,9 +6,9 @@ import Modal from '../../components/Modal/Modal';
 import EditorBlock from '../../components/EditorBlock/EditorBlock';
 import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
-import user from '../../assets/icons/user.svg';
 import Download from '../../components/Download/Download';
 import User from '../../components/User/User';
+import ProfileButton from '../../components/ProfileButton/ProfileButton';
 
 const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
@@ -253,10 +253,7 @@ const Editor = () => {
         <section className='editor'>
           <div className='editor__heading-container'>
             <h1 className='editor__heading'>Editor</h1>
-            <div className='editor__user-toggle'>
-              <img className='editor__user' src={user} alt="user account area" onClick={userToggle} />
-              profile
-            </div>
+            <ProfileButton userToggle={userToggle}/>
           </div>
           <div className='editor__area'>
             <EditorBlock

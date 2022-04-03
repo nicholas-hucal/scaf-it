@@ -1,18 +1,15 @@
 import React from 'react';
 import './Download.scss';
 import downloadImage from '../../assets/icons/download.svg';
-import user from '../../assets/icons/user.svg';
 import Button from '../Button/Button';
+import ProfileButton from '../ProfileButton/ProfileButton';
 
 const Download = ({ download, userToggle }) => {
     return (
         <section className='download'>
             <div className='download__header'>
                 <h1 className='download__heading'>Download</h1>
-                <div className='download__user-toggle'>
-                    <img className='download__user' src={user} alt="user account area" onClick={userToggle} />
-                    profile
-                </div>
+                <ProfileButton userToggle={userToggle}/>
             </div>
             <div className='download__container'>
                 <div className='download__details'>
