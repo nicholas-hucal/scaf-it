@@ -76,14 +76,13 @@ const Editor = () => {
   }
 
   const userToggle = () => {
-    // api call to get user components
-    // set state of userModal array
-    // erase on second toggle
-
-    if (userModal.length < 1) {
-      setUserModal([1,2])
-    } else {
+    if (userModal.length > 1) {
       setUserModal([])
+    } else {
+      api.getComponentByUserId()
+        .then(res => {
+          setUserModal(res.data)
+        })
     }
   }
 
@@ -197,14 +196,14 @@ const Editor = () => {
       return <LoginButton title='Please Login' />
     }
   } else if (fileToDownload) {
-    return <Download download={fileToDownload}/>
+    return <Download download={fileToDownload} />
   } else {
     return (
       <>
         <section className='editor'>
           <div className='editor__heading-container'>
             <h1 className='editor__heading'>Editor</h1>
-            <img className='editor__user' src={user} alt="user account area" onClick={userToggle}/>
+            <img className='editor__user' src={user} alt="user account area" onClick={userToggle} />
           </div>
           <div className='editor__area'>
             <EditorBlock
@@ -239,7 +238,7 @@ const Editor = () => {
             {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
           </div>
         </section>
-        {(userModal.length > 1 && !modal) && <User components={userModal} profileData={profileData} userToggle={userToggle}/>}
+        {(userModal.length > 1 && !modal) && <User setFileToDownload={setFileToDownload} components={userModal} profileData={profileData} userToggle={userToggle} />}
       </>
     );
   }

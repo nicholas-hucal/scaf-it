@@ -6,6 +6,7 @@ const api = {
     logOut: `${SERVER_URL}/auth/logout`,
     createComponent: (block) => axios.post(`${SERVER_URL}/components/create`, block, { withCredentials: true }),
     getComponent: (block) => axios.post(`${SERVER_URL}/components`, block, { withCredentials: true }),
+    getComponentByUserId: () => axios.get(`${SERVER_URL}/components`, { withCredentials: true }),
     createBlock: (block) => axios.post(`${SERVER_URL}/block`, block, { withCredentials: true }),
     editBlock: (block) => axios.put(`${SERVER_URL}/block`, block, { withCredentials: true }),
     deleteBlock: (block_id) => axios.delete(`${SERVER_URL}/block/${block_id}`, { withCredentials: true }),

@@ -4,8 +4,30 @@ import close from '../../assets/icons/cancel-small.svg';
 import Button from '../Button/Button';
 import api from '../../utils/api';
 
-const User = ({ userToggle, components, profileData }) => {
-    console.log(profileData)
+const User = ({ userToggle, components, profileData, setFileToDownload }) => {
+
+    const createComponentName = (name) => {
+        return name.split('-').map(piece => capitalize(piece)).join('');
+    }
+
+    const capitalize = string => {
+        return string[0].toUpperCase() + string.slice(1);
+    }
+
+    const getComponent = (component) => {
+        api.createComponent(component)
+            .then(res => {
+                return setFileToDownload(res.data);
+            })
+            .then(() => {
+                userToggle()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
     return (
         <div className='user'>
             <div className='user__content'>
@@ -16,7 +38,13 @@ const User = ({ userToggle, components, profileData }) => {
                     <div className='user__components'>
                         <h2 className='user__heading'>Components</h2>
                         {components.map(comp => {
-                            return <a key={comp.id} className='user__component' href={comp.file}>{comp.name}</a>
+                            return <div
+                                key={comp.id}
+                                className='user__component'
+                                onClick={() => getComponent(comp)}
+                            >
+                                {createComponentName(comp.name)}
+                            </div>
                         })}
                     </div>
                     <div className='user__account'>
@@ -27,7 +55,7 @@ const User = ({ userToggle, components, profileData }) => {
                             <Button to={api.logOut} text='logout' type='anchor' />
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
