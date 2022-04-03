@@ -5,8 +5,9 @@ import Button from '../Button/Button';
 import api from '../../utils/api';
 import editImage from '../../assets/icons/pencil.svg';
 import downloadImage from '../../assets/icons/download.svg';
+import deleteImage from '../../assets/icons/trash-can.svg';
 
-const User = ({ userToggle, components, profileData, setFileToDownload, getComponent }) => {
+const User = ({getComponent, createComponent, deleteComponent, components, profileData, userToggle}) => {
 
     const createComponentName = (name) => {
         return name.split('-').map(piece => capitalize(piece)).join('');
@@ -15,20 +16,6 @@ const User = ({ userToggle, components, profileData, setFileToDownload, getCompo
     const capitalize = string => {
         return string[0].toUpperCase() + string.slice(1);
     }
-
-    const createComponent = (component) => {
-        api.createComponent(component)
-            .then(res => {
-                return setFileToDownload(res.data);
-            })
-            .then(() => {
-                userToggle()
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
 
     return (
         <div className='user'>
@@ -44,7 +31,8 @@ const User = ({ userToggle, components, profileData, setFileToDownload, getCompo
                                 {createComponentName(comp.name)}
                                 <div className='user__component-actions'>
                                     <img className='user__icons' src={editImage} alt="edit this component" onClick={() => getComponent(comp)} />
-                                    <img className='user__icons' src={downloadImage} alt="download this component" onClick={() => createComponent(comp)}/>
+                                    <img className='user__icons' src={downloadImage} alt="download this component" onClick={() => createComponent(comp)} />
+                                    <img className='user__icons' src={deleteImage} alt="delete this component" onClick={() => deleteComponent(comp.id)} />
                                 </div>
                             </div>
                         })}

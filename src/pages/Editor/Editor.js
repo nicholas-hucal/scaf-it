@@ -194,10 +194,10 @@ const Editor = () => {
   const getComponent = (block) => {
     api.getComponent(block)
       .then(response => {
-        console.log(response);
         setBlock(response.data.block)
         setRows(response.data.elements)
         setChildren(response.data.children)
+        setFileToDownload(null)
         userToggle()
       })
       .catch(err => {
@@ -205,17 +205,46 @@ const Editor = () => {
       })
   }
 
+  const createComponent = (component) => {
+    api.createComponent(component)
+      .then(res => {
+        return setFileToDownload(res.data);
+      })
+      .then(() => {
+        userToggle()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  const deleteComponent = (component) => {
+    api.deleteComponent(component)
+      .then(res => {
+        setFileToDownload(null)
+        setUserComponents(prev => prev.filter(component => component.id !== Number(res.data.id)))
+        if (Number(block.id) === Number(res.data.id)) {
+          setBlock(basicRow)
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  const userComponent = <User getComponent={getComponent} createComponent={createComponent} deleteComponent={deleteComponent} components={userComponents} profileData={profileData} userToggle={userToggle}/>
+
   if (!isLoggedIn) {
-    return <LoginButton title='Please Login' />
     if (authStatus) {
       return <Loading />
     } else {
+      return <LoginButton title='Please Login' />
     }
   } else if (fileToDownload) {
     return (
       <>
         <Download download={fileToDownload} userToggle={userToggle} />
-        {(userModal && !modal) && <User getComponent={getComponent} setFileToDownload={setFileToDownload} components={userComponents} profileData={profileData} userToggle={userToggle} />}
+        {(userModal && !modal) && userComponent}
       </>
     )
   } else {
@@ -262,7 +291,7 @@ const Editor = () => {
             {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
           </div>
         </section>
-        {(userModal && !modal) && <User getComponent={getComponent} setFileToDownload={setFileToDownload} components={userComponents} profileData={profileData} userToggle={userToggle} />}
+        {(userModal && !modal) && userComponent}
       </>
     );
   }

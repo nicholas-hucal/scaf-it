@@ -16,7 +16,7 @@ const Download = ({ download, userToggle }) => {
             </div>
             <div className='download__container'>
                 <div className='download__details'>
-                    <p>Congratulations you have completed scaffolding a new component. Click to download.</p>
+                    <p>Congratulations you have completed scaffolding a component. Click to download.</p>
                     <p>You can also access previously created components by accessing your account by clicking the user icon</p>
                     <div className='download__actions'>
                         <Button to={download.file} text={`download ${download.component.componentName} component`} color="green" type='anchor' />

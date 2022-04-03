@@ -6,7 +6,7 @@ import editor from '../../assets/images/editor.png';
 const EditorContent = ({ blockToggle }) => {
     return (
         <section className='editor-content'>
-            <Button text='add content +' onClick={blockToggle} />
+            <Button text='start scaffolding' onClick={blockToggle} />
             <div className='editor-content__instructions'>
                 <div className='editor-content__details'>
                     <h2 className='editor-content__heading'>Instructions</h2>
@@ -14,7 +14,7 @@ const EditorContent = ({ blockToggle }) => {
                         Simply follow the instructions below to get started.
                     </p>
                     <ol className='editor-content__list'>
-                        <li className='editor-content__list-item'>click the add content button above</li>
+                        <li className='editor-content__list-item'>click the start scaffolding button above</li>
                         <li className='editor-content__list-item'>add your element's type in the modal</li>
                         <li className='editor-content__list-item'>add your element's name in the modal </li>
                         <li className='editor-content__list-item'>add any modifiers of your element in a comma and space seperated list (i.e. active, hover etc)</li>

@@ -105,7 +105,7 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
                     <Autocomplete suggestions={suggestions} value={row.type} changeType={changeType} />
                     <Input label='element name' value={row.name} onChange={changeName} />
                     <Input label='modifiers' value={row.modifiers.join(', ')} onChange={changeMods} />
-                    <Button className="modal__submit" color="green" text='save' onClick={(e) => submitRow(e)} />
+                    <Button className="modal__submit" color="green" text='save element' onClick={(e) => submitRow(e)} />
                 </div>
             </div>
         </div>
