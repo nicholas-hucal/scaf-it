@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
 import user from '../../assets/icons/user.svg';
 import Download from '../../components/Download/Download';
+import User from '../../components/User/User';
 
 const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
@@ -21,6 +22,7 @@ const Editor = () => {
   const [modal, setModal] = useState(true);
   const [parent, setParent] = useState(basicRow);
   const [fileToDownload, setFileToDownload] = useState(null)
+  const [userModal, setUserModal] = useState([]);
 
   useEffect(() => {
     document.title = "SCAFit | Editor";
@@ -71,6 +73,18 @@ const Editor = () => {
       setRowToEdit({ ...children.find(row => row.id === id) });
     }
     setParent({ ...rows.find(row => row.id === parent_id) })
+  }
+
+  const userToggle = () => {
+    // api call to get user components
+    // set state of userModal array
+    // erase on second toggle
+
+    if (userModal.length < 1) {
+      setUserModal([1,2])
+    } else {
+      setUserModal([])
+    }
   }
 
   const addBlock = (row) => {
@@ -190,7 +204,7 @@ const Editor = () => {
         <section className='editor'>
           <div className='editor__heading-container'>
             <h1 className='editor__heading'>Editor</h1>
-            <img className='editor__user' src={user} alt="user account area" />
+            <img className='editor__user' src={user} alt="user account area" onClick={userToggle}/>
           </div>
           <div className='editor__area'>
             <EditorBlock
@@ -222,10 +236,10 @@ const Editor = () => {
             />
           }
           <div className='editor__actions'>
-            {/* <Button to={api.logOut} text='logout' type='anchor' /> */}
             {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
           </div>
         </section>
+        {(userModal.length > 1 && !modal) && <User components={userModal} profileData={profileData} userToggle={userToggle}/>}
       </>
     );
   }

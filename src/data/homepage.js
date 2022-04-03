@@ -12,7 +12,7 @@ const details = {
     backgroundAlt: 'scaffolding on a worksite',
     link: '/editor',
     linkText: 'to the editor',
-    details: `A project designed for maximizing efficiency in component construction, while attending BrainStation's web development bootcamp in early 2022.`,
+    details: `A project designed for maximizing efficiency in React component construction, while attending BrainStation's web development bootcamp in early 2022.`,
     cards: [
         {
             heading: 'Foundations',

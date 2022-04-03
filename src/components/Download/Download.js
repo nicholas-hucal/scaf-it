@@ -22,7 +22,7 @@ const Download = ({ download }) => {
 
                 </div>
                 <div className='download__area'>
-                    <a className='download__link' href={download.file} target="_blank"><img className='download__image' src={downloadImage} alt="download file here" /></a>
+                    <a className='download__link' href={download.file}><img className='download__image' src={downloadImage} alt="download file here" /></a>
                 </div>
             </div>
 

@@ -4,14 +4,15 @@
 .editor {
     padding: 1rem;
 
-    @include mixins.desktop {
-        @include mixins.desktop-container;
-    }
-
+    
     @include mixins.tablet {
         padding: 2rem;
     }
-
+    
+    @include mixins.desktop {
+        @include mixins.desktop-container;
+    }
+    
     &__heading-container {
         display: flex;
         justify-content: space-between;
@@ -23,6 +24,11 @@
         width: 2rem;
         margin: 0;
         padding: 0;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 
     &__heading {

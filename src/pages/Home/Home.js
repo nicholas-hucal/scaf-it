@@ -1,6 +1,5 @@
 import './Home.scss';
 import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import Triangle from '../../components/Triangle/Triangle';
 import Card from '../../components/Card/Card';
@@ -43,9 +42,9 @@ const Home = () => {
                     <div className='home__details'>
                         <div className='home__details-column'>
                             Contact
-                            <Link to="" className='home__contact-link'><img className='home__contact-icons' src={linkedIn} alt="connect via linkedin"/> LinkedIn</Link>
-                            <Link to="" className='home__contact-link'><img className='home__contact-icons' src={github} alt="connect via github"/> Github</Link> 
-                            <Link to="" className='home__contact-link'><img className='home__contact-icons' src={email} alt="connect via email"/> Email</Link>
+                            <a href="https://www.linkedin.com/in/nicholas-hucal/" className='home__contact-link'><img className='home__contact-icons' src={linkedIn} alt="connect via linkedin"/> LinkedIn</a>
+                            <a href="https://github.com/nicholas-hucal" className='home__contact-link'><img className='home__contact-icons' src={github} alt="connect via github"/> Github</a> 
+                            <a href="mailto:nhucal@mac.com" className='home__contact-link'><img className='home__contact-icons' src={email} alt="connect via email"/> Email</a>
                         </div>
                         <div className='home__details-column'>
                             About<br/>
