@@ -68,8 +68,19 @@
     }
 
     &__user {
+        width: 2rem;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+
         &:hover {
             transform: scale(1.1);
         }
+    }
+
+    &__user-toggle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

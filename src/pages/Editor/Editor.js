@@ -22,7 +22,8 @@ const Editor = () => {
   const [modal, setModal] = useState(true);
   const [parent, setParent] = useState(basicRow);
   const [fileToDownload, setFileToDownload] = useState(null)
-  const [userModal, setUserModal] = useState([]);
+  const [userModal, setUserModal] = useState(false);
+  const [userComponents, setUserComponents] = useState([]);
 
   useEffect(() => {
     document.title = "SCAFit | Editor";
@@ -76,12 +77,13 @@ const Editor = () => {
   }
 
   const userToggle = () => {
-    if (userModal.length > 1) {
-      setUserModal([])
+    setUserModal(prev => !prev);
+    if (userComponents.length > 1) {
+      setUserComponents([])
     } else {
       api.getComponentByUserId()
         .then(res => {
-          setUserModal(res.data)
+          setUserComponents(res.data)
         })
     }
   }
@@ -189,21 +191,43 @@ const Editor = () => {
       })
   }
 
+  const getComponent = (block) => {
+    api.getComponent(block)
+      .then(response => {
+        console.log(response);
+        setBlock(response.data.block)
+        setRows(response.data.elements)
+        setChildren(response.data.children)
+        userToggle()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   if (!isLoggedIn) {
+    return <LoginButton title='Please Login' />
     if (authStatus) {
       return <Loading />
     } else {
-      return <LoginButton title='Please Login' />
     }
   } else if (fileToDownload) {
-    return <Download download={fileToDownload} />
+    return (
+      <>
+        <Download download={fileToDownload} userToggle={userToggle} />
+        {(userModal && !modal) && <User getComponent={getComponent} setFileToDownload={setFileToDownload} components={userComponents} profileData={profileData} userToggle={userToggle} />}
+      </>
+    )
   } else {
     return (
       <>
         <section className='editor'>
           <div className='editor__heading-container'>
             <h1 className='editor__heading'>Editor</h1>
-            <img className='editor__user' src={user} alt="user account area" onClick={userToggle} />
+            <div className='editor__user-toggle'>
+              <img className='editor__user' src={user} alt="user account area" onClick={userToggle} />
+              profile
+            </div>
           </div>
           <div className='editor__area'>
             <EditorBlock
@@ -238,7 +262,7 @@ const Editor = () => {
             {block.id && <Button onClick={() => submitComponent(block)} text='generate files' />}
           </div>
         </section>
-        {(userModal.length > 1 && !modal) && <User setFileToDownload={setFileToDownload} components={userModal} profileData={profileData} userToggle={userToggle} />}
+        {(userModal && !modal) && <User getComponent={getComponent} setFileToDownload={setFileToDownload} components={userComponents} profileData={profileData} userToggle={userToggle} />}
       </>
     );
   }
