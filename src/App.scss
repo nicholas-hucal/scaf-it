@@ -4,5 +4,9 @@
 .app {
     &__main {
         padding-top: 3rem;
+
+        @include mixins.tablet {
+            padding-top: 4rem;
+        }
     }
 }

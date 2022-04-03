@@ -1,5 +1,5 @@
 import './App.scss';
-import React, {useState} from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Editor from './pages/Editor/Editor';

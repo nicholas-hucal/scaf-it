@@ -19,3 +19,8 @@
     align-items: $align;
     flex-direction: $direction;
 }
+
+@mixin desktop-container() {
+    width: $desktop-width;
+    margin: 0 auto;
+}

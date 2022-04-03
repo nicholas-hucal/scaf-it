@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logos/logo.png';
 import menu from '../../assets/icons/grip-lines.svg';
-import api from '../../utils/api';
 
 const Nav = () => {
 

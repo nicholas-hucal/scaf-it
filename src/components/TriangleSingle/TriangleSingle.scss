@@ -1,5 +1,5 @@
 @use '../../styles/partials/colors';
-@use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .triangle-single {
     position: relative;
@@ -10,14 +10,34 @@
         &--left {
             top: 0;
             left: 0;
-            border-left: 6rem solid colors.$primary-white;
-            border-bottom: 4rem solid transparent;
+            border-left: 24vw solid colors.$primary-white;
+            border-bottom: 16vw solid transparent;
+
+            @include  mixins.tablet {
+                border-left-width: 24vw;
+                border-bottom-width: 16vw;
+            }
+
+            @include mixins.desktop {
+                border-left-width: 16rem;
+                border-bottom-width: 12rem;            
+            }
         }
         &--right {
             bottom: 0;
             right: 0;
-            border-right: 6rem solid colors.$primary-white;
-            border-top: 4rem solid transparent;
+            border-right: 24vw solid colors.$primary-white;
+            border-top: 16vw solid transparent;
+
+            @include  mixins.tablet {
+                border-right-width: 24vw;
+                border-top-width: 16vw;
+            }
+
+            @include mixins.desktop {
+                border-right-width: 16rem;
+                border-top-width: 12rem;            
+            }
         }
 
         &--green {

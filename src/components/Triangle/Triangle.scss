@@ -1,5 +1,5 @@
 @use '../../styles/partials/colors';
-@use '../../styles/partials/typography';
+@use '../../styles/partials/mixins';
 
 .triangle {
     position: relative;
@@ -9,6 +9,13 @@
     background-color: transparent;
     border-top: 2.5vw solid transparent;
 
+    @include mixins.desktop {
+        width: 12.5rem;
+        height: 7.25rem;
+        background-color: transparent;
+        border-top: 1.25rem solid transparent;
+    }
+
     &--animate {
         animation: loading 1s ease-in-out infinite alternate;
     }
@@ -16,6 +23,10 @@
     &--last {
         border-bottom: 2.5vw solid transparent;
         height: 17vw;
+
+        @include mixins.desktop {
+            height: 8.5rem;
+        }
     }
 
     &__shape {
@@ -27,11 +38,21 @@
             left: 0;
             border-left: 20vw solid colors.$primary-white;
             border-bottom: 12vw solid transparent;
+            
+            @include mixins.desktop {
+                border-left: 10rem solid colors.$primary-white;
+                border-bottom: 6rem solid transparent;
+            }
         }
         &--right {
             right: 0;
             border-right: 20vw solid colors.$primary-white;
             border-top: 12vw solid transparent;
+
+            @include mixins.desktop {
+                border-right: 10rem solid colors.$primary-white;
+                border-top: 6rem solid transparent;
+            }
         }
 
         &--green {
@@ -44,18 +65,19 @@
             border-left-color: colors.$primary-blue;
         }
     }
-@keyframes loading {
-    0% {
-        transform: scaleX(100%);
-    }
 
-    50% {
-        transform: scaleX(80%);
-    }
+    @keyframes loading {
+        0% {
+            transform: scaleX(100%);
+        }
 
-    100% {
-        transform: scaleX(100%);
+        50% {
+            transform: scaleX(80%);
+        }
+
+        100% {
+            transform: scaleX(100%);
+        }
+        
     }
-    
-}
 }

@@ -3,16 +3,23 @@
 @use '../../styles/partials/mixins';
 
 .home {
+    
+    @include mixins.desktop {
+        @include mixins.desktop-container;
+    }
+
     &__hero {
         display: flex;
         flex-direction: column;
         background-color: colors.$primary-grey;
         padding: 2rem 1rem;
         @include mixins.tablet {
-            padding: 1rem 5rem 3rem 5rem;
+            padding: 3rem 5rem 3rem 5rem;
+            flex-direction: row;
         }
-    }
 
+    }
+    
     &__hero-left {
         flex: 1;
         display: flex;
@@ -22,17 +29,24 @@
         color: colors.$typography-grey;
         gap: 1rem;
         text-align: center;
+
+        @include mixins.tablet {
+            text-align: left;
+            align-items: flex-start;
+        }
     }
     
     &__logo {
-        max-width: 55%;
+        max-width: 50%;
     }
 
     
     &__heading {
         font-weight: 300;
-        padding-right: 1rem;
         color: colors.$typography-grey;
+        @include mixins.tablet {
+            padding-right: 2rem;
+        }
     }
 
     &__hero-right {
@@ -44,6 +58,11 @@
         
         @include mixins.tablet {
             display: block;
+        }
+
+        @include mixins.desktop {
+            width: 15rem;
+            height: 16rem; 
         }
     }
    
@@ -62,7 +81,7 @@
     }
 
     &__features {
-        padding: 1rem 1rem 3rem 1rem;
+        padding: 3rem 1rem 3rem 1rem;
 
         @include mixins.tablet {
             padding: 2rem 2rem 7rem 2rem;
@@ -78,7 +97,17 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        padding: 3rem;
+        padding: 3rem 24vw;
+
+
+        @include mixins.tablet {
+            flex-direction: row;
+            padding: 3rem 24vw;
+        }
+
+        @include mixins.desktop {
+            padding: 6rem 12rem;
+        }
     }
 
     &__details-column {

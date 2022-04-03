@@ -38,6 +38,10 @@
             margin: 15vh auto;
             width: 50vw;
         }
+
+        @include mixins.desktop {
+            width: 720px;
+        }
     }
 
     &__error {

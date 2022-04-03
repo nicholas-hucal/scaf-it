@@ -4,6 +4,14 @@
 .editor {
     padding: 1rem;
 
+    @include mixins.desktop {
+        @include mixins.desktop-container;
+    }
+
+    @include mixins.tablet {
+        padding: 2rem;
+    }
+
     &__heading {
         margin-bottom: 3rem;
     }

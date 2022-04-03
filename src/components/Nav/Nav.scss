@@ -6,18 +6,21 @@
     position: fixed;
     width: 100%;
     z-index: 2;
+    border-bottom: 1px solid colors.$secondary-grey;
 
     &__container {
         padding: 0.5rem 1rem;
-        border-bottom: 1px solid colors.$secondary-grey;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         @include mixins.tablet {
-            padding: 1rem 2rem;
-            align-items: flex-start;
+            padding: 0.5rem 2rem;
             justify-content: space-between;
+        }
+
+        @include mixins.desktop {
+            @include mixins.desktop-container;
         }
     }
 
@@ -59,7 +62,22 @@
 
         @include mixins.tablet {
             display: flex;
-            gap: 0 0.25rem;
+            position: relative;
+            top: 0;
+            padding: 0;
+            background-color: transparent;
+            flex-direction: row;
+            top: auto
+
+            &--open {
+                -webkit-animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            }
+
+            &--closed {
+                -webkit-animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            }
         }
     }
 
@@ -84,17 +102,19 @@
     }
 
     &__logo-link {
-        width: 12rem;
-        display: block;
+        // width: 12rem;
+        // display: block;
         cursor: pointer;
         margin: 0;
     }
 
     &__logo {
-        width: 50%;
+        width: 7rem;
+        margin: 0;
+        padding: 0;
 
         @include mixins.tablet {
-            width: 100%;
+            width: 9rem;
         }
     }
 }
