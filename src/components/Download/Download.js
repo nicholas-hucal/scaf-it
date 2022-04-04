@@ -1,7 +1,7 @@
 import React from 'react';
 import './Download.scss';
 import downloadMessage from '../../data/download';
-import downloadImage from '../../assets/icons/download.svg';
+import downloadImage from '../../assets/icons/download-dark.svg';
 import Button from '../Button/Button';
 import ProfileButton from '../ProfileButton/ProfileButton';
 
@@ -25,7 +25,6 @@ const Download = ({ download, userToggle }) => {
                     <a className='download__link' href={download.file}><img className='download__image' src={downloadImage} alt="download file here" /></a>
                 </div>
             </div>
-
         </section>
     )
 }

@@ -26,6 +26,7 @@ const User = ({getComponent, createComponent, deleteComponent, components, profi
                 <div className='user__body'>
                     <div className='user__components'>
                         <h2 className='user__heading'>Components</h2>
+                        {components.length === 0 && <p>no saved components</p>}
                         {components.map(comp => {
                             return <div key={comp.id} className='user__component'>
                                 {createComponentName(comp.name)}

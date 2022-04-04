@@ -4,7 +4,6 @@ import containers from '../../data/containers';
 import {v4 as uuidv4} from 'uuid';
 
 const Element = ({block, type, name, modifiers, id, changeType, changeName, changeModifier, removeElem, copyElem, addChildRow}) => {
-    
     return (
         <div className='element'>
             <div className='element__bem'>
