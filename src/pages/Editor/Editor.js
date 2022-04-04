@@ -11,8 +11,10 @@ import User from '../../components/User/User';
 import ProfileButton from '../../components/ProfileButton/ProfileButton';
 import EditorContent from '../../components/EditorContent/EditorContent';
 import notifications from '../../data/notifications.js';
+import Notification from '../../components/Notification/Notification';
+import { v4 as uuidv4 } from 'uuid';
 
-const Editor = ({ setNotification }) => {
+const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authStatus, setAuthStatus] = useState(true);
@@ -26,6 +28,7 @@ const Editor = ({ setNotification }) => {
   const [fileToDownload, setFileToDownload] = useState(null)
   const [userModal, setUserModal] = useState(false);
   const [userComponents, setUserComponents] = useState([]);
+  const [notification, setNotification] = useState([])
 
   useEffect(() => {
     document.title = "SCAFit | Editor";
@@ -44,7 +47,7 @@ const Editor = ({ setNotification }) => {
           setNotification(prev => [notifications.auth])
         }
       });
-  }, []);
+  },[]);
 
   useEffect(() => {
     setModal(prev => !prev);
@@ -297,6 +300,7 @@ const Editor = ({ setNotification }) => {
           </div>
         </section>
         {(userModal && !modal) && userComponent}
+        {notification && notification.map(notif => <Notification key={uuidv4()} title={notif.title} body={notif.body}/>)}
       </>
     );
   }
