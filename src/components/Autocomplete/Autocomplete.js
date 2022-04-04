@@ -46,12 +46,13 @@ const Autocomplete = ({ suggestions, changeType, value }) => {
                 return;
             }
             setActiveSuggestionIndex(activeSuggestionIndex - 1);
-        }
-        else if (e.keyCode === 40) {
+        } else if (e.keyCode === 40) {
             if (activeSuggestionIndex - 1 === filteredSuggestions.length) {
                 return;
             }
             setActiveSuggestionIndex(activeSuggestionIndex + 1);
+        } else if (e.keyCode === 9) {
+            setShowSuggestions(false);
         }
     };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Download.scss';
+import downloadMessage from '../../data/download';
 import downloadImage from '../../assets/icons/download.svg';
 import Button from '../Button/Button';
 import ProfileButton from '../ProfileButton/ProfileButton';
@@ -13,8 +14,7 @@ const Download = ({ download, userToggle }) => {
             </div>
             <div className='download__container'>
                 <div className='download__details'>
-                    <p>Congratulations you have completed scaffolding a component. Click to download.</p>
-                    <p>You can also access previously created components by accessing your account by clicking the user icon</p>
+                    <p>{downloadMessage.message}</p>
                     <div className='download__actions'>
                         <Button to={download.file} text={`download ${download.component.componentName} component`} color="green" type='anchor' />
                         <Button to="/editor" text='scaffold another' type='anchor' />
