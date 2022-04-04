@@ -14,7 +14,7 @@ import TriangleSingle from '../../components/TriangleSingle/TriangleSingle';
 const Home = () => {
 
     useEffect(() => {
-        document.title = "SCAFit | Home";  
+        document.title = "SCAFit | Home";
     }, []);
 
     return (

@@ -34,6 +34,11 @@
     animation: shrink .5s ease-in-out;
 }
 
+@mixin dissolve() {
+    opacity: 0;
+    animation: dissolve 4s ease-in-out;
+}
+
 @keyframes grow {
     from {
       transform: scaleX(0);
@@ -50,5 +55,24 @@
     }
     to {
       transform: scaleX(0);
+    }
+}
+
+@keyframes dissolve {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    10% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    90% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(0);
+        opacity: 0;
     }
 }

@@ -10,8 +10,9 @@ import Download from '../../components/Download/Download';
 import User from '../../components/User/User';
 import ProfileButton from '../../components/ProfileButton/ProfileButton';
 import EditorContent from '../../components/EditorContent/EditorContent';
+import notifications from '../../data/notifications.js';
 
-const Editor = () => {
+const Editor = ({ setNotification }) => {
   const basicRow = { name: '', type: '', modifiers: [] }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authStatus, setAuthStatus] = useState(true);
@@ -40,7 +41,7 @@ const Editor = () => {
           setAuthStatus(false);
           setIsLoggedIn(false);
         } else {
-          console.log('Error authenticating', err);
+          setNotification(prev => [notifications.auth])
         }
       });
   }, []);
@@ -86,6 +87,9 @@ const Editor = () => {
         .then(res => {
           setUserComponents(res.data)
         })
+        .catch(() => {
+          setNotification(prev => [notifications.server])
+        })
     }
   }
 
@@ -96,7 +100,7 @@ const Editor = () => {
         setBlock(res.data)
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -106,7 +110,7 @@ const Editor = () => {
         setRows(prev => [...prev, res.data])
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -116,7 +120,7 @@ const Editor = () => {
         setChildren(prev => [...prev, res.data])
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -127,7 +131,7 @@ const Editor = () => {
         setBlock(res.data)
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -137,7 +141,7 @@ const Editor = () => {
         setRows(prev => [...prev].map(existing => existing.id === row.id ? res.data : existing))
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -147,7 +151,7 @@ const Editor = () => {
         setChildren(prev => [...prev].map(existing => existing.id === row.id ? res.data : existing))
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -158,7 +162,7 @@ const Editor = () => {
         setBlock(basicRow);
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -168,7 +172,7 @@ const Editor = () => {
         setRows(prev => [...prev].filter(existing => existing.id !== id));
       })
       .catch(err => {
-        console.log(err);
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -178,7 +182,7 @@ const Editor = () => {
         setChildren(prev => [...prev].filter(existing => existing.id !== id));
       })
       .catch(err => {
-        console.log(err);
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -188,7 +192,7 @@ const Editor = () => {
         setFileToDownload(res.data);
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -202,7 +206,7 @@ const Editor = () => {
         userToggle()
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -215,7 +219,7 @@ const Editor = () => {
         userToggle()
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
@@ -229,11 +233,11 @@ const Editor = () => {
         }
       })
       .catch(err => {
-        console.log(err)
+        setNotification(prev => [notifications.server])
       })
   }
 
-  const userComponent = <User getComponent={getComponent} createComponent={createComponent} deleteComponent={deleteComponent} components={userComponents} profileData={profileData} userToggle={userToggle}/>
+  const userComponent = <User getComponent={getComponent} createComponent={createComponent} deleteComponent={deleteComponent} components={userComponents} profileData={profileData} userToggle={userToggle} />
 
   if (!isLoggedIn) {
     if (authStatus) {
@@ -254,7 +258,7 @@ const Editor = () => {
         <section className='editor'>
           <div className='editor__heading-container'>
             <h1 className='editor__heading'>Editor</h1>
-            <ProfileButton userToggle={userToggle}/>
+            <ProfileButton userToggle={userToggle} />
           </div>
           <div className='editor__area'>
             {block.name === '' && <EditorContent blockToggle={blockToggle} />}

@@ -2,6 +2,7 @@
 @use "./styles/partials/mixins";
 
 .app {
+    position: relative;
     &__main {
         padding-top: 3rem;
 
