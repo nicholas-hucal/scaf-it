@@ -1,11 +1,11 @@
 import React from 'react';
 import './User.scss';
-import close from '../../assets/icons/cancel-small.svg';
+import close from '../../assets/icons/cancel-dark.svg';
 import Button from '../Button/Button';
 import api from '../../utils/api';
-import editImage from '../../assets/icons/pencil.svg';
-import downloadImage from '../../assets/icons/download.svg';
-import deleteImage from '../../assets/icons/trash-can.svg';
+import editImage from '../../assets/icons/edit-dark.svg';
+import downloadImage from '../../assets/icons/download-dark.svg';
+import deleteImage from '../../assets/icons/trash-dark.svg';
 
 const User = ({getComponent, createComponent, deleteComponent, components, profileData, userToggle}) => {
 
@@ -21,7 +21,7 @@ const User = ({getComponent, createComponent, deleteComponent, components, profi
         <div className='user'>
             <div className='user__content'>
                 <div className='user__close'>
-                    <img src={close} alt="close user" onClick={userToggle} />
+                    <img className='user__icon' src={close} alt="close user" onClick={userToggle} />
                 </div>
                 <div className='user__body'>
                     <div className='user__components'>

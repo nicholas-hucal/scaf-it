@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NavHashLink, HashLink } from 'react-router-hash-link';
 import logo from '../../assets/logos/logo.png';
-import menu from '../../assets/icons/grip-lines.svg';
+import menu from '../../assets/icons/menu-dark.svg';
 
 const Nav = () => {
 

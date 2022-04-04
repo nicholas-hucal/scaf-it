@@ -1,20 +1,15 @@
 import './EditorBlock.scss';
 import React from 'react';
 import EditorRow from '../../components/EditorRow/EditorRow';
-import deleteIcon from '../../assets/icons/delete.svg';
+import deleteIcon from '../../assets/icons/trash.svg';
 import editIcon from '../../assets/icons/edit.svg';
 import addIcon from '../../assets/icons/add.svg';
-import EditorContent from '../EditorContent/EditorContent';
 
 const EditorBlock = ({ block, rows, children, blockToggle, rowToggle, childToggle, deleteBlock, deleteRow, deleteChild }) => {
     const formatMods = (mods) => {
         return mods.map(mod => {
             return mod !== '' ? ` ${block.name}--${mod}` : ''
         }).join('')
-    }
-
-    if (block.name === '') {
-        return <EditorContent blockToggle={blockToggle} />
     }
 
     return (

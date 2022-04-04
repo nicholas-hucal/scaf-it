@@ -1,6 +1,6 @@
 import './EditorRow.scss';
 import React from 'react';
-import deleteIcon from '../../assets/icons/delete.svg';
+import deleteIcon from '../../assets/icons/trash.svg';
 import editIcon from '../../assets/icons/edit.svg';
 import addIcon from '../../assets/icons/add.svg';
 import EditorChild from '../EditorChild/EditorChild';

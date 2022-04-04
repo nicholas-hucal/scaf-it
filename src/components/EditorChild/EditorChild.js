@@ -1,6 +1,6 @@
 import './EditorChild.scss';
 import React from 'react';
-import deleteIcon from '../../assets/icons/delete.svg';
+import deleteIcon from '../../assets/icons/trash.svg';
 import editIcon from '../../assets/icons/edit.svg';
 
 const EditorChild = ({ block, row, childToggle, deleteChild }) => {

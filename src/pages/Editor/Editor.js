@@ -9,6 +9,7 @@ import Loading from '../../components/Loading/Loading';
 import Download from '../../components/Download/Download';
 import User from '../../components/User/User';
 import ProfileButton from '../../components/ProfileButton/ProfileButton';
+import EditorContent from '../../components/EditorContent/EditorContent';
 
 const Editor = () => {
   const basicRow = { name: '', type: '', modifiers: [] }
@@ -256,17 +257,20 @@ const Editor = () => {
             <ProfileButton userToggle={userToggle}/>
           </div>
           <div className='editor__area'>
-            <EditorBlock
-              block={block}
-              rows={rows}
-              children={children}
-              deleteBlock={deleteBlock}
-              deleteRow={deleteRow}
-              deleteChild={deleteChild}
-              blockToggle={blockToggle}
-              rowToggle={rowToggle}
-              childToggle={childToggle}
-            />
+            {block.name === '' && <EditorContent blockToggle={blockToggle} />}
+            {block.name !== '' &&
+              <EditorBlock
+                block={block}
+                rows={rows}
+                children={children}
+                deleteBlock={deleteBlock}
+                deleteRow={deleteRow}
+                deleteChild={deleteChild}
+                blockToggle={blockToggle}
+                rowToggle={rowToggle}
+                childToggle={childToggle}
+              />
+            }
           </div>
           {modal &&
             <Modal

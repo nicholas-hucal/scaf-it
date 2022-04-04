@@ -3,8 +3,14 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FFFFFF;}
+	.st0{fill:#2B4970;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#2B4970;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
 </style>
-<path class="st0" d="M90.4,44.6H55.5v-35c0-3-2.5-5.5-5.5-5.5c-3,0-5.5,2.5-5.5,5.5v35H9.7c-3,0-5.5,2.5-5.5,5.5s2.5,5.5,5.5,5.5
-	h34.8v34.8c0,3,2.5,5.5,5.5,5.5c3,0,5.5-2.5,5.5-5.5V55.6h34.9c3,0,5.5-2.5,5.5-5.5S93.5,44.6,90.4,44.6z"/>
+<g>
+	<path class="st3" d="M49.8,94.8c-2.1,0-4.1-0.8-5.5-2.3C42.8,91,42,89,42,87V57.8H12.8c-2.1,0-4.1-0.8-5.5-2.3
+		C5.8,54.1,5,52.1,5,50c0-4.3,3.5-7.8,7.8-7.8H42V13c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8l0,29.1h29.1c4.3,0,7.8,3.5,7.8,7.8
+		c0,4.3-3.5,7.8-7.8,7.8H57.6V87C57.6,91.3,54.1,94.8,49.8,94.8z"/>
+</g>
 </svg>

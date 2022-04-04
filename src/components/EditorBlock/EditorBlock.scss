@@ -3,6 +3,11 @@
 
 .editor-block {
     position: relative;
+    @include mixins.grow;
+
+    &--shrink {
+        @include mixins.shrink;
+    }
 
     &__buttons {
         position: absolute;

@@ -6,7 +6,7 @@ import Card from '../../components/Card/Card';
 import Footer from '../../components/Footer/Footer';
 import Button from '../../components/Button/Button';
 import homepage from '../../data/homepage';
-import email from '../../assets/icons/mail.svg';
+import email from '../../assets/icons/mail-black.svg';
 import github from '../../assets/brands/git-square.svg';
 import linkedIn from '../../assets/brands/linkedin.svg';
 import TriangleSingle from '../../components/TriangleSingle/TriangleSingle';

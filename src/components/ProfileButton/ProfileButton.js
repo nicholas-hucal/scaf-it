@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProfileButton.scss';
-import user from '../../assets/icons/user.svg';
+import user from '../../assets/icons/user-dark.svg';
 
 const ProfileButton = ({userToggle}) => {
     return (

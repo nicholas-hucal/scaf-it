@@ -1,6 +1,6 @@
 import './Modal.scss';
 import React, { useState } from 'react';
-import close from '../../assets/icons/cancel-small.svg';
+import close from '../../assets/icons/cancel-dark.svg';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Autocomplete from '../Autocomplete/Autocomplete';
@@ -89,7 +89,7 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
         <div className='modal'>
             <div className='modal__content'>
                 <div className='modal__close'>
-                    <img src={close} alt="close modal" onClick={modalToggle} />
+                    <img className='modal__icon' src={close} alt="close modal" onClick={modalToggle} />
                 </div>
                 <div className='modal__body'>
                     <pre className='modal__code'>
