@@ -1,23 +1,34 @@
 import './EditorRow.scss';
-import React from 'react';
+import React, {useState} from 'react';
 import deleteIcon from '../../assets/icons/trash.svg';
 import editIcon from '../../assets/icons/edit.svg';
 import addIcon from '../../assets/icons/add.svg';
 import EditorChild from '../EditorChild/EditorChild';
 
 const EditorRow = ({ block, row, children, rowToggle, childToggle, deleteRow, deleteChild, child }) => {
+    const [deleting, setDeleting] = useState(false);
+    
     const formatMods = (mods) => {
         return mods.map(mod => {
             return mod !== '' ? ` ${block.name}__${row.name}--${mod}` : ''
         }).join('')
     }
+
+    const addDeleteAnimation = () => {
+        setDeleting(true)
+        setTimeout(() => {
+            deleteRow(row.id);
+            setDeleting(false)
+        }, 400)
+    }
+
     return (
-        <div className='editor-row'>
+        <div className={`editor-row ${deleting && 'editor-row--shrink'}`}>
             <div className='editor-row__buttons'>
                 <button className='editor-row__action' onClick={() => rowToggle('edit', row.id)}>
                     <img className='editor-row__icon' src={editIcon} alt="edit row" />
                 </button>
-                <button className='editor-row__action' onClick={() => deleteRow(row.id)}>
+                <button className='editor-row__action' onClick={addDeleteAnimation}>
                     <img className='editor-row__icon' src={deleteIcon} alt="delete row" />
                 </button>
                 {(!child && (row.type !== 'input' && row.type !== 'img')) &&

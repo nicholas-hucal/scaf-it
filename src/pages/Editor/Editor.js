@@ -64,7 +64,7 @@ const Editor = () => {
     if (action === 'edit') {
       setRowToEdit({ ...block })
     }
-    modalToggle();
+    setParent(basicRow);
   }
 
   const rowToggle = (action, id) => {
@@ -90,7 +90,7 @@ const Editor = () => {
         .then(res => {
           setUserComponents(res.data)
         })
-        .catch(() => {
+        .catch(err => {
           setNotification(prev => [notifications.server])
         })
     }

@@ -12,7 +12,7 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
 
     const formatMods = (mods) => {
         return mods.map(mod => {
-            return mod !== '' ? ` ${block.name !== '' && !row.parent ? `${block.name}__` : ''}${row.name}--${mod}` : ''
+            return mod !== '' ? ` ${block.name !== '' && parent.name !== '' ? `${block.name}__` : ''}${row.name}--${mod}` : ''
         }).join('')
     }
 
@@ -95,9 +95,9 @@ const Modal = ({ modalToggle, block, parent, rowToEdit, addBlock, addRow, addChi
                     <pre className='modal__code'>
                         <code>
                             {row.type === 'input' || row.type === 'img' ?
-                                `<${row.type} className="${block.name !== '' && !row.parent ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"/>`
+                                `<${row.type} className="${block.name !== '' && parent.name !== '' ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"/>`
                                 :
-                                `<${row.type} className="${block.name !== '' && !row.parent ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"></${row.type}>`
+                                `<${row.type} className="${block.name !== '' && parent.name !== '' ? `${block.name}__` : ''}${row.name}${formatMods(row.modifiers)}"></${row.type}>`
                             }
                         </code>
                     </pre>
