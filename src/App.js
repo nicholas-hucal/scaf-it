@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import Editor from './pages/Editor/Editor';
 import Error from './pages/Error/Error'
 import Nav from './components/Nav/Nav';
+import NotFound from './pages/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -14,8 +15,9 @@ const App = () => {
         <main className='app__main'>
           <Switch>
             <Route path="/" exact component={Home}/>
-            <Route path="/editor" component={Editor}/>
-            <Route path="/error" component={Error}/>
+            <Route path="/editor" exact component={Editor}/>
+            <Route path="/error" exact component={Error}/>
+            <Route component={NotFound} />
           </Switch>
         </main>
       </BrowserRouter>

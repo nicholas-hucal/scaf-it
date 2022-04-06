@@ -1,0 +1,21 @@
+@use '../../styles/partials/mixins';
+
+.not-found {
+    padding: 1rem;
+
+    @include mixins.tablet {
+        padding: 2rem;
+    }
+
+    @include mixins.desktop {
+        @include mixins.desktop-container;
+    }
+
+    &__heading {
+        margin-bottom: 2rem;
+    }
+
+    &__body {
+        margin-bottom: 3rem;
+    }
+}
