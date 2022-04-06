@@ -6,16 +6,14 @@
 
 An app that provides React component scaffolding for efficient development. Simply enter a few details about your component and a downloadable zip file will be created including;  Component.js, Component.scss and index.js files for your component all linked and ready for use.
 
-SCAFit is built with React using; React-Router-Dom, Sass and Axios as some key dependencies. It requires the use of SCAFit - Server in order to be fully operational. This is available here.
-
-
+SCAFit is built with React using; React-Router-Dom, Sass and Axios as some key dependencies. It requires the use of SCAFit - Server in order to be fully operational. This is available [here](https://github.com/nicholas-hucal/scaf-it-server).
 
 
 ## Tech Stack
 
 **Client:** React, Sass, React Router Dom, Axios
 
-**Server:** Node, Express, Passport, Knex, MySQL
+**Server:** Node, Express, Passport, Knex, MySQL, OAuth
 
 
 ## Features
@@ -34,9 +32,10 @@ To deploy this project download or clone the project locally.
 
 Run ```npm install``` to install dependencies
 
-Open the config folder and enter the required details in index.example.js to your current production and development domains. Change the filename to index.js 
+Open the config folder and enter the required details in index.js to your current production and development domains.
 
-```export const API_URL =
+```
+export const API_URL =
 process.env.NODE_ENV === 'production'
   ? 'https://yourdomain.here'
   : 'http://localhost:5000';
@@ -44,6 +43,7 @@ process.env.NODE_ENV === 'production'
 
 Run ```npm start``` to run application
 
+You will then need to follow the [link](https://github.com/nicholas-hucal/scaf-it-server) to install the server including creating a github application for OAuth. 
 
 ## Roadmap
 
